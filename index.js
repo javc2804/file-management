@@ -5,6 +5,9 @@ import conectarDB from "./config/db.js";
 import usuarioRoutes from "./routes/usuarioRoutes.js";
 import proyectoRoutes from "./routes/proyectoRoutes.js";
 import tareaRoutes from "./routes/tareaRoutes.js";
+import passport from "passport";
+import session from "express-session";
+import "./config/passport.js"; // Importar la configuración de Passport
 
 const app = express();
 app.use(express.json());
@@ -29,6 +32,18 @@ const corsOptions = {
 };
 
 // app.use(cors(corsOptions));
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+// Inicializar Passport y restaurar la sesión, si existe
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routing
 app.use("/api/usuarios", usuarioRoutes);

@@ -49,6 +49,15 @@ const autenticar = async (req, res) => {
     return res.status(403).json({ msg: error.message });
   }
 
+  if (req.body.googleId) {
+    return res.json({
+      _id: usuario._id,
+      nombre: usuario.nombre,
+      email: usuario.email,
+      token: generarJWT(usuario._id),
+    });
+  }
+
   // Comprobar su password
   if (await usuario.comprobarPassword(password)) {
     res.json({
