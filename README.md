@@ -1,4 +1,4 @@
-# Nombre del Proyecto file-management
+# File Management
 
 Breve descripción del proyecto.
 
@@ -6,6 +6,7 @@ Breve descripción del proyecto.
 
 - Node.js 18
 - npm 10.2.4
+- MongoDB
 
 ## Instalación
 
