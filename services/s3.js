@@ -66,39 +66,24 @@ export async function getFileURL(filename) {
   });
   return await getSignedUrl(client, command, { expiresIn: 3600 });
 }
-export async function putNameFile(id) {
+
+export async function reNameFile(oldName, newName) {
   try {
-    // Obtén el nombre del archivo utilizando el ID
-    const fileName = await getFileNameFromID(id);
-
-    // Comprueba si el objeto existe
-    const command = new GetObjectCommand({
-      Bucket: AWS_BUCKET_NAME,
-      Key: fileName,
-    });
-
-    await client.send(command);
-
-    // Si el objeto existe, cópialo a un nuevo nombre
-    const newName = "cambiado";
-
     const copyParams = {
       Bucket: AWS_BUCKET_NAME,
-      CopySource: `${AWS_BUCKET_NAME}/${fileName}`,
+      CopySource: `${AWS_BUCKET_NAME}/${oldName}`,
       Key: newName,
     };
     const copyCommand = new CopyObjectCommand(copyParams);
     await client.send(copyCommand);
-    console.log(`File copied to ${newName}`);
 
-    // Si no necesitas el archivo original, puedes eliminarlo
-    const deleteParams = {
+    const overwriteParams = {
       Bucket: AWS_BUCKET_NAME,
-      Key: fileName,
+      Key: oldName,
+      Body: "",
     };
-    const deleteCommand = new DeleteObjectCommand(deleteParams);
-    await client.send(deleteCommand);
-    console.log(`Original file ${fileName} deleted`);
+    const overwriteCommand = new PutObjectCommand(overwriteParams);
+    await client.send(overwriteCommand);
   } catch (error) {
     console.error(`Error: ${error.message}`);
   }

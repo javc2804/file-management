@@ -8,7 +8,7 @@ import {
   getFile,
   downloadFile,
   getFileURL,
-  putNameFile,
+  reNameFile,
 } from "../services/s3.js";
 
 router.get("/", async (req, res) => {
@@ -33,11 +33,10 @@ router.post("/", async (req, res) => {
   res.json({ result });
 });
 
-router.put("/:id", async (req, res) => {
-  const result = await putNameFile(req.params.id);
-  res.json({
-    url: result,
-  });
+router.put("/:oldName/:newName", async (req, res) => {
+  const { oldName, newName } = req.params;
+  await reNameFile(oldName, newName);
+  res.json({ message: `File renamed from ${oldName} to ${newName}` });
 });
 
 export default router;
