@@ -4,6 +4,7 @@ import cors from "cors";
 import conectarDB from "./config/db.js";
 import usuarioRoutes from "./routes/usuarioRoutes.js";
 import fileRoutes from "./routes/fileRoutes.js";
+import imageRoutes from "./routes/imageRoutes.js";
 import passport from "passport";
 import session from "express-session";
 import "./config/passport.js"; // Importar la configuración de Passport
@@ -57,8 +58,7 @@ app.use(passport.session());
 // Routing
 app.use("/api/usuarios", usuarioRoutes);
 app.use("/api/files", fileRoutes);
-// app.use("/api/proyectos", proyectoRoutes);
-// app.use("/api/tareas", tareaRoutes);
+app.use("/api/images", imageRoutes);
 
 const PORT = process.env.PORT || 4000;
 const servidor = app.listen(PORT, () => {
