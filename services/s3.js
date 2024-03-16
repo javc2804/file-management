@@ -14,6 +14,7 @@ import {
 } from "../config/s3.js";
 import fs from "fs";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import path from "path";
 
 const client = new S3Client({
   region: AWS_BUCKET_REGION,
@@ -50,12 +51,44 @@ export async function getFile(filename) {
 }
 
 export async function downloadFile(filename) {
-  const command = new GetObjectCommand({
-    Bucket: AWS_BUCKET_NAME,
-    Key: filename,
-  });
-  const result = await client.send(command);
-  result.Body.pipe(fs.createWriteStream(`./images/${filename}`));
+  try {
+    const command = new GetObjectCommand({
+      Bucket: AWS_BUCKET_NAME,
+      Key: filename,
+    });
+    const result = await client.send(command);
+
+    // Crear el directorio si no existe
+    const dir = "./images";
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+
+    const filePath = path.join(dir, filename);
+    const writeStream = fs.createWriteStream(filePath);
+
+    // Manejar el error del writeStream
+    writeStream.on("error", (err) => {
+      throw new Error(`Error al escribir el archivo: ${err}`);
+    });
+
+    // Pipe the data as binary
+    result.Body.pipe(writeStream);
+
+    return { success: true };
+  } catch (error) {
+    if (error.name === "NoSuchKey") {
+      return {
+        success: false,
+        error: `El archivo ${filename} no existe en el bucket de S3.`,
+      };
+    } else {
+      return {
+        success: false,
+        error: `Error al descargar el archivo: ${error}`,
+      };
+    }
+  }
 }
 
 export async function getFileURL(filename) {

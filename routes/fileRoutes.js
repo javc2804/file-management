@@ -24,8 +24,12 @@ router.get("/:fileName", checkAuth, async (req, res) => {
 });
 
 router.get("/downloadfile/:fileName", checkAuth, async (req, res) => {
-  await downloadFile(req.params.fileName);
-  res.json({ message: "archivo descargado" });
+  const result = await downloadFile(req.params.fileName);
+  if (result.success) {
+    res.json({ msg: "archivo descargado" });
+  } else {
+    res.status(404).json({ error: result.error });
+  }
 });
 
 router.post("/", checkAuth, async (req, res) => {
@@ -36,7 +40,7 @@ router.post("/", checkAuth, async (req, res) => {
 router.put("/:oldName/:newName", checkAuth, async (req, res) => {
   const { oldName, newName } = req.params;
   await reNameFile(oldName, newName);
-  res.json({ message: `Archivo renombrado de ${oldName} a ${newName}` });
+  res.json({ msg: `Archivo renombrado de ${oldName} a ${newName}` });
 });
 
 export default router;

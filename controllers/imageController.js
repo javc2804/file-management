@@ -31,10 +31,8 @@ export async function upload(req, res) {
       response.headers["content-type"]
     );
 
-    res.json({ message: "Imagen subida exitosamente" });
+    res.json({ msg: "Imagen subida exitosamente" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: `Error al subir la imagen: ${error.message}` });
+    res.status(500).json({ error: `Error al subir la imagen: ${error.msg}` });
   }
 }
