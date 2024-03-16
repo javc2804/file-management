@@ -47,6 +47,8 @@ Si prefieres ejecutar el proyecto en un contenedor Docker, sigue estos pasos:
 
 - [Sitio en producción](https://file-management-v67d.onrender.com/)
 
+Este sitio esta configurado con CI/CD para cualquier cambio inmediato por medio de una rama al hacer push automaticamente se refleja el cambio.
+
 ## Prueba Unitarias
 
 Para ejecutar las pruebas unitarias, utiliza el siguiente comando: `npm jest`
