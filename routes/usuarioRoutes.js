@@ -11,8 +11,6 @@ import {
   nuevoPassword,
 } from "../controllers/usuarioController.js";
 
-import checkAuth from "../middleware/checkAuth.js";
-
 router.post("/", registrar);
 router.post("/login", autenticar);
 router.get("/confirmar/:token", confirmar);

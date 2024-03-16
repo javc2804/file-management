@@ -74,9 +74,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routing
-app.use("/api/usuarios", usuarioRoutes);
-app.use("/api/files", fileRoutes);
-app.use("/api/images", imageRoutes);
+app.use("/usuarios", usuarioRoutes);
+app.use("/files", fileRoutes);
+app.use("/images", imageRoutes);
 
 const PORT = process.env.PORT || 4000;
 const servidor = app.listen(PORT, () => {
