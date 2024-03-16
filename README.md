@@ -2,6 +2,22 @@
 
 Breve descripción del proyecto.
 
+Una API Rest para una web de subida y gestión de archivos.
+Entre los servicios que se tendrán que realizar están:
+
+- Login
+- Registro (Con la contraseña encriptada)
+- Olvide contraseña con envío de email.
+- Subida de archivos (AWS S3)
+- Bajada de archivos (AWS S3)
+- Gestor de archivos donde puedes: cambiar nombre y obtener enlace de
+  archivo. (AWS S3)
+- Integrar un buscador de imagenes online usando una API externa
+  (Unsplash por ejemplo)
+- Subir una imagen proveniente de una API externa directo a S3 (Es
+  decir, sin que el usuario tenga que bajar la imagen en su local y luego
+  subirla manualmente).
+
 ## Requisitos previos
 
 - Node.js 18
