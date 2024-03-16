@@ -6,7 +6,7 @@
     "contact": {}
   },
   "host": "localhost:4000",
-  "basePath": "/api",
+  "basePath": "/",
   "securityDefinitions": {
     "oauth2": {
       "type": "oauth2",
@@ -676,6 +676,64 @@
         }
       }
     },
+    "/images/upload/zQMN9fLJehM": {
+      "post": {
+        "summary": "Subir imagen a S3",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "SubirimagenaS3",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200-Imagensubidacorrectamente"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Imagen subida exitosamente"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "40"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"28-Bpji+YyRBum7T9gs6EdTMB1PiOM\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:25:35 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/files": {
       "get": {
         "summary": "Obtener imagenes",
@@ -847,6 +905,141 @@
               "Keep-Alive": {
                 "type": "string",
                 "default": "timeout=5"
+              },
+              "Transfer-Encoding": {
+                "type": "string",
+                "default": "chunked"
+              },
+              "CF-Ray": {
+                "type": "string",
+                "default": "86572fe298164c14-MIA"
+              },
+              "CF-Cache-Status": {
+                "type": "string",
+                "default": "DYNAMIC"
+              },
+              "Vary": {
+                "type": "string",
+                "default": "Accept-Encoding"
+              },
+              "rndr-id": {
+                "type": "string",
+                "default": "7a563542-4c17-45fa"
+              },
+              "x-powered-by": {
+                "type": "string",
+                "default": "Express"
+              },
+              "x-render-origin-server": {
+                "type": "string",
+                "default": "Render"
+              },
+              "Server": {
+                "type": "string",
+                "default": "cloudflare"
+              },
+              "Content-Encoding": {
+                "type": "string",
+                "default": "br"
+              },
+              "alt-svc": {
+                "type": "string",
+                "default": "h3=\":443\"; ma=86400"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/files/downloadfile/react-logo.jpg": {
+      "get": {
+        "summary": "Descargar un archivo",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Descargarunarchivo",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200-Descarga"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "archivo descargado"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "32"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"20-jnpkh0q8x9Ivrg0Y3hX96Eac2cE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 20:34:32 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404-noencontroarchivo1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "error": "El archivo react-logo.jpgd no existe en el bucket de S3."
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "68"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"44-NTq4chJ+SloyHWkVTkUODylZsI8\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 20:35:19 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
               }
             }
           }
@@ -962,64 +1155,6 @@
               "Date": {
                 "type": "string",
                 "default": "Sat, 16 Mar 2024 15:19:40 GMT"
-              },
-              "Connection": {
-                "type": "string",
-                "default": "keep-alive"
-              },
-              "Keep-Alive": {
-                "type": "string",
-                "default": "timeout=5"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/images/upload/zQMN9fLJehM": {
-      "post": {
-        "summary": "Subir imagen desde unsplash a Bucket s3",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "SubirimagendesdeunsplashaBuckets3",
-        "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/200-Imagensubidacorrectamente"
-            },
-            "examples": {
-              "application/json; charset=utf-8": {
-                "message": "Imagen subida exitosamente"
-              }
-            },
-            "headers": {
-              "X-Powered-By": {
-                "type": "string",
-                "default": "Express"
-              },
-              "Content-Length": {
-                "type": "string",
-                "default": "40"
-              },
-              "ETag": {
-                "type": "string",
-                "default": "W/\"28-Bpji+YyRBum7T9gs6EdTMB1PiOM\""
-              },
-              "Date": {
-                "type": "string",
-                "default": "Sat, 16 Mar 2024 15:25:35 GMT"
               },
               "Connection": {
                 "type": "string",
@@ -1384,6 +1519,21 @@
         "msg"
       ]
     },
+    "200-Imagensubidacorrectamente": {
+      "title": "200-Imagensubidacorrectamente",
+      "example": {
+        "message": "Imagen subida exitosamente"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
     "200-Obtenerlistadeimagenesdebucket": {
       "title": "200-Obtenerlistadeimagenesdebucket",
       "example": {
@@ -1446,6 +1596,80 @@
       "required": [
         "DisplayName",
         "ID"
+      ]
+    },
+    "Obtenerimagene": {
+      "title": "Obtenerimagene",
+      "example": {
+        "Key": "6Cu80n4Iscc.jpg",
+        "LastModified": "2024-03-16T13:15:59.000Z",
+        "ETag": "\"9fd8184e6661627e1f9ca61c072205ab\"",
+        "Size": 1036508,
+        "StorageClass": "STANDARD",
+        "Owner": {
+          "DisplayName": "jmartin",
+          "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "Key": {
+          "type": "string"
+        },
+        "LastModified": {
+          "type": "string"
+        },
+        "ETag": {
+          "type": "string"
+        },
+        "Size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "StorageClass": {
+          "type": "string"
+        },
+        "Owner": {
+          "$ref": "#/definitions/Owner"
+        }
+      },
+      "required": [
+        "Key",
+        "LastModified",
+        "ETag",
+        "Size",
+        "StorageClass",
+        "Owner"
+      ]
+    },
+    "200-Descarga": {
+      "title": "200-Descarga",
+      "example": {
+        "message": "archivo descargado"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "404-noencontroarchivo1": {
+      "title": "404-noencontroarchivo1",
+      "example": {
+        "error": "El archivo react-logo.jpgd no existe en el bucket de S3."
+      },
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "error"
       ]
     },
     "200-Consultacorrecta": {
@@ -2757,21 +2981,6 @@
       "required": [
         "status",
         "approved_on"
-      ]
-    },
-    "200-Imagensubidacorrectamente": {
-      "title": "200-Imagensubidacorrectamente",
-      "example": {
-        "message": "Imagen subida exitosamente"
-      },
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "message"
       ]
     },
     "200-Cambiologrado": {
