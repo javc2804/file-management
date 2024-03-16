@@ -4,6 +4,7 @@ import cors from "cors";
 
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
+import swaggerDocument from "./File-Management.postman_collection.json-Swagger20.json" assert { type: "json" };
 
 import conectarDB from "./config/db.js";
 import usuarioRoutes from "./routes/usuarioRoutes.js";
@@ -67,7 +68,7 @@ app.use(
 const specs = swaggerJsdoc(options);
 
 app.use(express.static("images"));
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(passport.initialize());
 app.use(passport.session());

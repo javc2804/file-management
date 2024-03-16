@@ -1,0 +1,2800 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "File-Management",
+    "contact": {}
+  },
+  "host": "localhost:4000",
+  "basePath": "/api",
+  "securityDefinitions": {
+    "oauth2": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+      "tokenUrl": "https://oauth2.googleapis.com/token",
+      "scopes": {
+        "profile": ""
+      }
+    }
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/usuarios": {
+      "post": {
+        "summary": "Registro de usuarios",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Registrodeusuarios",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RegistrodeusuariosRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/201-Registrodeusuarios"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "msg": "Usuario Creado Correctamente, Revisa tu Email para confirmar tu cuenta"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "80"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"50-gzJjnBBYRqwmUMX0Y3eQ0ntYCGo\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 14:20:58 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/400-Registrodeusuarios1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "msg": "Nombre, correo electrónico y contraseña son requeridos"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "66"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"42-IbVOUMzpCMOpFYN4sk932bXyekM\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 14:41:46 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuarios/login": {
+      "post": {
+        "summary": "Autenticar usuarios (tradicional)",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Autenticarusuarios(tradicional)",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Autenticarusuarios%28tradicional%29Request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200-Iniciodesesi%C3%B3nlogrado%C3%89xito"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "_id": "65f5b3f045cfd8bc6148a0af",
+                "nombre": "Javier",
+                "email": "correo3@correo.com",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjViM2YwNDVjZmQ4YmM2MTQ4YTBhZiIsImlhdCI6MTcxMDYwMTMyOCwiZXhwIjoxNzEzMTkzMzI4fQ.sDtQ5yo_chw-T53jP71yVqJ09cJR5q7uXNeL3bb8Z1c"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "263"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"107-sba/MsvrfqZw9D5I3T0LvsJiKMk\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:02:08 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/403-Usuarionoconfirmado1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "msg": "Tu Cuenta no ha sido confirmada"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "41"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"29-Rrs27PUFLbuOmYAonjYDkfV9dtE\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:01:31 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404-Usuarionoencontrado1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "msg": "El Usuario no existe"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "30"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1e-Ta/AYBhFFUuusJc4bOef+1hJgIc\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:00:40 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuarios/auth/google": {
+      "get": {
+        "summary": "Autenticación con 0Auth - google",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Autenticacióncon0Auth-google",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "profile"
+            ]
+          }
+        ]
+      }
+    },
+    "/usuarios/confirmar/7ckin5pkuvo1hp3uifpb": {
+      "get": {
+        "summary": "Confirmar cuenta token",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Confirmarcuentatoken",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/200-Confirmado"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "msg": "Usuario Confirmado Correctamente"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "42"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"2a-t5YzZHoLRFCJ/u4P0kabQet8lEw\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:37:44 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/403-Tokeninvalido1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "msg": "Token no válido"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "26"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1a-mgABFu0NS3/ChUpzjsNgjjc02w0\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:31:03 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuarios/olvide-password": {
+      "post": {
+        "summary": "Solicitar token para cambiar clave",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Solicitartokenparacambiarclave",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SolicitartokenparacambiarclaveRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200-Enviodeemail"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "msg": "Hemos enviado un email con las instrucciones"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "54"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"36-uGnGbC2YZT2gH8DKBnzVakac1ao\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:32:37 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404-Usuarioinexistente1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "msg": "El Usuario no existe"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "30"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1e-Ta/AYBhFFUuusJc4bOef+1hJgIc\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:31:40 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuarios/olvide-password/pate1cq9l6g1hp3ukfoe": {
+      "get": {
+        "summary": "Valida el token para cambiar el password",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Validaeltokenparacambiarelpassword",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200-Validado"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "msg": "Token válido y el Usuario existe"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "43"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"2b-lQBL/ASVv349iUF35XM6o6ScCE4\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:38:55 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404-Tokennov%C3%A1lido1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "msg": "Token no válido"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "26"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1a-mgABFu0NS3/ChUpzjsNgjjc02w0\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:39:35 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuarios/olvide-password/7bglvo1dkjo1h502m458": {
+      "post": {
+        "summary": "Almacena el nuevo password",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Almacenaelnuevopassword",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AlmacenaelnuevopasswordRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/201-Cambiodeclave"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "msg": "Password Modificado Correctamente"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "43"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"2b-SDU1NPLTBuRrVYivzr8YYgDW2HI\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:40:57 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/404-Tokennov%C3%A1lido1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "msg": "Token no válido"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "26"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1a-mgABFu0NS3/ChUpzjsNgjjc02w0\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:42:08 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files": {
+      "get": {
+        "summary": "Obtener imagenes",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Obtenerimagenes",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "default": "",
+              "items": {
+                "$ref": "#/definitions/200-Obtenerlistadeimagenesdebucket"
+              }
+            },
+            "examples": {
+              "application/json; charset=utf-8": [
+                {
+                  "Key": "6Cu80n4Iscc.jpg",
+                  "LastModified": "2024-03-16T13:15:59.000Z",
+                  "ETag": "\"9fd8184e6661627e1f9ca61c072205ab\"",
+                  "Size": 1036508,
+                  "StorageClass": "STANDARD",
+                  "Owner": {
+                    "DisplayName": "jmartin",
+                    "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+                  }
+                },
+                {
+                  "Key": "Screenshot from 2024-03-07 09-28-43.png",
+                  "LastModified": "2024-03-15T22:23:18.000Z",
+                  "ETag": "\"6a2e4f96c1ad12598450e6c6eb4d97de\"",
+                  "Size": 468750,
+                  "StorageClass": "STANDARD",
+                  "Owner": {
+                    "DisplayName": "jmartin",
+                    "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+                  }
+                },
+                {
+                  "Key": "gray-dragon-statue-in-tilt-shift-lens-gXyptwjk9aw.jpg",
+                  "LastModified": "2024-03-16T13:19:05.000Z",
+                  "ETag": "\"71e3ed41937c79a1f2675a9d39ed6bce\"",
+                  "Size": 964517,
+                  "StorageClass": "STANDARD",
+                  "Owner": {
+                    "DisplayName": "jmartin",
+                    "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+                  }
+                },
+                {
+                  "Key": "images.jpeg",
+                  "LastModified": "2024-03-15T23:31:32.000Z",
+                  "ETag": "\"f8054d496ee401de081cae240eeacbeb\"",
+                  "Size": 9646,
+                  "StorageClass": "STANDARD",
+                  "Owner": {
+                    "DisplayName": "jmartin",
+                    "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+                  }
+                },
+                {
+                  "Key": "malo.png",
+                  "LastModified": "2024-03-15T22:24:18.000Z",
+                  "ETag": "\"e27a75548a438c9eece7cee7834c56b3\"",
+                  "Size": 348055,
+                  "StorageClass": "STANDARD",
+                  "Owner": {
+                    "DisplayName": "jmartin",
+                    "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+                  }
+                },
+                {
+                  "Key": "prueba.png",
+                  "LastModified": "2024-03-16T11:46:59.000Z",
+                  "ETag": "\"d41d8cd98f00b204e9800998ecf8427e\"",
+                  "Size": 0,
+                  "StorageClass": "STANDARD",
+                  "Owner": {
+                    "DisplayName": "jmartin",
+                    "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+                  }
+                },
+                {
+                  "Key": "prueba2.png",
+                  "LastModified": "2024-03-16T11:43:39.000Z",
+                  "ETag": "\"6a2e4f96c1ad12598450e6c6eb4d97de\"",
+                  "Size": 468750,
+                  "StorageClass": "STANDARD",
+                  "Owner": {
+                    "DisplayName": "jmartin",
+                    "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+                  }
+                },
+                {
+                  "Key": "prueba3.png",
+                  "LastModified": "2024-03-16T14:03:44.000Z",
+                  "ETag": "\"d41d8cd98f00b204e9800998ecf8427e\"",
+                  "Size": 0,
+                  "StorageClass": "STANDARD",
+                  "Owner": {
+                    "DisplayName": "jmartin",
+                    "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+                  }
+                },
+                {
+                  "Key": "prueba4.png",
+                  "LastModified": "2024-03-16T14:04:18.000Z",
+                  "ETag": "\"d41d8cd98f00b204e9800998ecf8427e\"",
+                  "Size": 0,
+                  "StorageClass": "STANDARD",
+                  "Owner": {
+                    "DisplayName": "jmartin",
+                    "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+                  }
+                },
+                {
+                  "Key": "prueba5.png",
+                  "LastModified": "2024-03-16T14:04:17.000Z",
+                  "ETag": "\"6a2e4f96c1ad12598450e6c6eb4d97de\"",
+                  "Size": 468750,
+                  "StorageClass": "STANDARD",
+                  "Owner": {
+                    "DisplayName": "jmartin",
+                    "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+                  }
+                },
+                {
+                  "Key": "zQMN9fLJehM.jpg",
+                  "LastModified": "2024-03-16T13:11:20.000Z",
+                  "ETag": "\"e415ce89cf8a7006dbec29a3f5da3f09\"",
+                  "Size": 1466011,
+                  "StorageClass": "STANDARD",
+                  "Owner": {
+                    "DisplayName": "jmartin",
+                    "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+                  }
+                }
+              ]
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "2876"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"b3c-tA5PPzSGV9LOPillBQshTs53bcY\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:13:01 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/files/gray-dragon-statue-in-tilt-shift-lens-gXyptwjk9aw.jpg": {
+      "get": {
+        "summary": "Obtener url a partir de nombre",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Obtenerurlapartirdenombre",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200-Consultacorrecta"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "url": "https://aluxion-testing.s3.eu-west-1.amazonaws.com/gray-dragon-statue-in-tilt-shift-lens-gXyptwjk9aw.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAY74DF3JTFUGFP5OT%2F20240316%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20240316T151808Z&X-Amz-Expires=3600&X-Amz-Signature=b918742ba64dd231f112f5ce570ec3621700e5ecc5e7aa06520de49edae4048f&X-Amz-SignedHeaders=host&x-id=GetObject"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "434"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1b2-GPu7N6d+bqdFBCfiePq8MSCQVIs\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:18:08 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/images/search": {
+      "get": {
+        "summary": "Buscar imagen en unsplash",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Buscarimagenenunsplash",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "default": "",
+              "items": {
+                "$ref": "#/definitions/200-Busquedaconresultado"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "98346"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"1802a-vclvtwDitAi/IRZPKKMUBPhmP0M\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:19:40 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/images/upload/zQMN9fLJehM": {
+      "post": {
+        "summary": "Subir imagen desde unsplash a Bucket s3",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "SubirimagendesdeunsplashaBuckets3",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200-Imagensubidacorrectamente"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Imagen subida exitosamente"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "40"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"28-Bpji+YyRBum7T9gs6EdTMB1PiOM\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:25:35 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/files/prueba4.png/prueba5.png": {
+      "put": {
+        "summary": "Cambiar nombre de imagen",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Cambiarnombredeimagen",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200-Cambiologrado"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Archivo renombrado de prueba4.png a prueba5.png"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "61"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3d-TuIxIYQuuD+hEgZbrS4tpJqzM88\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:27:15 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "RegistrodeusuariosRequest": {
+      "title": "RegistrodeusuariosRequest",
+      "example": {
+        "nombre": "Javier",
+        "password": "12345678",
+        "email": "correo3@correo.com"
+      },
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "nombre",
+        "password",
+        "email"
+      ]
+    },
+    "201-Registrodeusuarios": {
+      "title": "201-Registrodeusuarios",
+      "example": {
+        "msg": "Usuario Creado Correctamente, Revisa tu Email para confirmar tu cuenta"
+      },
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "msg"
+      ]
+    },
+    "400-Registrodeusuarios1": {
+      "title": "400-Registrodeusuarios1",
+      "example": {
+        "msg": "Nombre, correo electrónico y contraseña son requeridos"
+      },
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "msg"
+      ]
+    },
+    "Autenticarusuarios(tradicional)Request": {
+      "title": "Autenticarusuarios(tradicional)Request",
+      "example": {
+        "password": "1234d5678",
+        "email": "correo3@correo.com"
+      },
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "password",
+        "email"
+      ]
+    },
+    "200-IniciodesesiónlogradoÉxito": {
+      "title": "200-IniciodesesiónlogradoÉxito",
+      "example": {
+        "_id": "65f5b3f045cfd8bc6148a0af",
+        "nombre": "Javier",
+        "email": "correo3@correo.com",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjViM2YwNDVjZmQ4YmM2MTQ4YTBhZiIsImlhdCI6MTcxMDYwMTMyOCwiZXhwIjoxNzEzMTkzMzI4fQ.sDtQ5yo_chw-T53jP71yVqJ09cJR5q7uXNeL3bb8Z1c"
+      },
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "_id",
+        "nombre",
+        "email",
+        "token"
+      ]
+    },
+    "403-Usuarionoconfirmado1": {
+      "title": "403-Usuarionoconfirmado1",
+      "example": {
+        "msg": "Tu Cuenta no ha sido confirmada"
+      },
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "msg"
+      ]
+    },
+    "404-Usuarionoencontrado1": {
+      "title": "404-Usuarionoencontrado1",
+      "example": {
+        "msg": "El Usuario no existe"
+      },
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "msg"
+      ]
+    },
+    "403-Autenticaciónfallida1": {
+      "title": "403-Autenticaciónfallida1",
+      "example": {
+        "msg": "El Password es Incorrecto"
+      },
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "msg"
+      ]
+    },
+    "200-Confirmado": {
+      "title": "200-Confirmado",
+      "example": {
+        "msg": "Usuario Confirmado Correctamente"
+      },
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "msg"
+      ]
+    },
+    "403-Tokeninvalido1": {
+      "title": "403-Tokeninvalido1",
+      "example": {
+        "msg": "Token no válido"
+      },
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "msg"
+      ]
+    },
+    "SolicitartokenparacambiarclaveRequest": {
+      "title": "SolicitartokenparacambiarclaveRequest",
+      "example": {
+        "email": "correo@gmail.com"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email"
+      ]
+    },
+    "200-Enviodeemail": {
+      "title": "200-Enviodeemail",
+      "example": {
+        "msg": "Hemos enviado un email con las instrucciones"
+      },
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "msg"
+      ]
+    },
+    "404-Usuarioinexistente1": {
+      "title": "404-Usuarioinexistente1",
+      "example": {
+        "msg": "El Usuario no existe"
+      },
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "msg"
+      ]
+    },
+    "200-Validado": {
+      "title": "200-Validado",
+      "example": {
+        "msg": "Token válido y el Usuario existe"
+      },
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "msg"
+      ]
+    },
+    "404-Tokennoválido1": {
+      "title": "404-Tokennoválido1",
+      "example": {
+        "msg": "Token no válido"
+      },
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "msg"
+      ]
+    },
+    "AlmacenaelnuevopasswordRequest": {
+      "title": "AlmacenaelnuevopasswordRequest",
+      "example": {
+        "password": "nuevoPassword"
+      },
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "password"
+      ]
+    },
+    "201-Cambiodeclave": {
+      "title": "201-Cambiodeclave",
+      "example": {
+        "msg": "Password Modificado Correctamente"
+      },
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "msg"
+      ]
+    },
+    "200-Obtenerlistadeimagenesdebucket": {
+      "title": "200-Obtenerlistadeimagenesdebucket",
+      "example": {
+        "Key": "6Cu80n4Iscc.jpg",
+        "LastModified": "2024-03-16T13:15:59.000Z",
+        "ETag": "\"9fd8184e6661627e1f9ca61c072205ab\"",
+        "Size": 1036508,
+        "StorageClass": "STANDARD",
+        "Owner": {
+          "DisplayName": "jmartin",
+          "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "Key": {
+          "type": "string"
+        },
+        "LastModified": {
+          "type": "string"
+        },
+        "ETag": {
+          "type": "string"
+        },
+        "Size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "StorageClass": {
+          "type": "string"
+        },
+        "Owner": {
+          "$ref": "#/definitions/Owner"
+        }
+      },
+      "required": [
+        "Key",
+        "LastModified",
+        "ETag",
+        "Size",
+        "StorageClass",
+        "Owner"
+      ]
+    },
+    "Owner": {
+      "title": "Owner",
+      "example": {
+        "DisplayName": "jmartin",
+        "ID": "2af265bafac3cf6888a3b6c4b2cd2fb33947883019333afe86c0a9a2926584fb"
+      },
+      "type": "object",
+      "properties": {
+        "DisplayName": {
+          "type": "string"
+        },
+        "ID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "DisplayName",
+        "ID"
+      ]
+    },
+    "200-Consultacorrecta": {
+      "title": "200-Consultacorrecta",
+      "example": {
+        "url": "https://aluxion-testing.s3.eu-west-1.amazonaws.com/gray-dragon-statue-in-tilt-shift-lens-gXyptwjk9aw.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAY74DF3JTFUGFP5OT%2F20240316%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20240316T151808Z&X-Amz-Expires=3600&X-Amz-Signature=b918742ba64dd231f112f5ce570ec3621700e5ecc5e7aa06520de49edae4048f&X-Amz-SignedHeaders=host&x-id=GetObject"
+      },
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ]
+    },
+    "200-Busquedaconresultado": {
+      "title": "200-Busquedaconresultado",
+      "example": {
+        "id": "F6920BvzrZE",
+        "slug": "shallow-focus-photo-of-dragon-on-gray-building-F6920BvzrZE",
+        "alternative_slugs": {
+          "en": "shallow-focus-photo-of-dragon-on-gray-building-F6920BvzrZE",
+          "es": "foto-de-enfoque-superficial-de-dragon-en-edificio-gris-F6920BvzrZE",
+          "ja": "灰色の建物にドラゴンの浅い焦点の写真-F6920BvzrZE",
+          "fr": "photo-de-mise-au-point-peu-profonde-de-dragon-sur-un-batiment-gris-F6920BvzrZE",
+          "it": "foto-di-messa-a-fuoco-superficiale-del-drago-sulledificio-grigio-F6920BvzrZE",
+          "ko": "회색-건물에-용의-얕은-초점-사진-F6920BvzrZE",
+          "de": "foto-mit-flachem-fokus-von-drache-auf-grauem-gebaude-F6920BvzrZE",
+          "pt": "foto-de-foco-raso-do-dragao-no-edificio-cinza-F6920BvzrZE"
+        },
+        "created_at": "2019-12-28T00:35:51Z",
+        "updated_at": "2024-03-16T01:58:33Z",
+        "promoted_at": null,
+        "width": 3510,
+        "height": 6000,
+        "color": "#c0c0c0",
+        "blur_hash": "LdGlL=ay-;M{~qt7WBayxuRjM{oL",
+        "description": null,
+        "alt_description": "shallow focus photo of dragon on gray building",
+        "breadcrumbs": [],
+        "urls": {
+          "raw": "https://images.unsplash.com/photo-1577493340887-b7bfff550145?ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA&ixlib=rb-4.0.3",
+          "full": "https://images.unsplash.com/photo-1577493340887-b7bfff550145?crop=entropy&cs=srgb&fm=jpg&ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA&ixlib=rb-4.0.3&q=85",
+          "regular": "https://images.unsplash.com/photo-1577493340887-b7bfff550145?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA&ixlib=rb-4.0.3&q=80&w=1080",
+          "small": "https://images.unsplash.com/photo-1577493340887-b7bfff550145?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA&ixlib=rb-4.0.3&q=80&w=400",
+          "thumb": "https://images.unsplash.com/photo-1577493340887-b7bfff550145?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA&ixlib=rb-4.0.3&q=80&w=200",
+          "small_s3": "https://s3.us-west-2.amazonaws.com/images.unsplash.com/small/photo-1577493340887-b7bfff550145"
+        },
+        "links": {
+          "self": "https://api.unsplash.com/photos/shallow-focus-photo-of-dragon-on-gray-building-F6920BvzrZE",
+          "html": "https://unsplash.com/photos/shallow-focus-photo-of-dragon-on-gray-building-F6920BvzrZE",
+          "download": "https://unsplash.com/photos/F6920BvzrZE/download?ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA",
+          "download_location": "https://api.unsplash.com/photos/F6920BvzrZE/download?ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA"
+        },
+        "likes": 1181,
+        "liked_by_user": false,
+        "current_user_collections": [],
+        "sponsorship": null,
+        "topic_submissions": {},
+        "asset_type": "photo",
+        "user": {
+          "id": "TgBaeKr_KM0",
+          "updated_at": "2023-09-12T23:12:04Z",
+          "username": "seansinspired",
+          "name": "Sean Thomas",
+          "first_name": "Sean",
+          "last_name": "Thomas",
+          "twitter_username": "seanditd",
+          "portfolio_url": "http://www.inspiredfilmstudios.com",
+          "bio": "instagram- @seansdevil\r\nTwitter - @seanditd\r\n\r\nFollow me and show me how you used my photos! I wanna see!",
+          "location": "Nashville Tennesee ",
+          "links": {
+            "self": "https://api.unsplash.com/users/seansinspired",
+            "html": "https://unsplash.com/@seansinspired",
+            "photos": "https://api.unsplash.com/users/seansinspired/photos",
+            "likes": "https://api.unsplash.com/users/seansinspired/likes",
+            "portfolio": "https://api.unsplash.com/users/seansinspired/portfolio",
+            "following": "https://api.unsplash.com/users/seansinspired/following",
+            "followers": "https://api.unsplash.com/users/seansinspired/followers"
+          },
+          "profile_image": {
+            "small": "https://images.unsplash.com/profile-1549045861750-e054f599d509?ixlib=rb-4.0.3&crop=faces&fit=crop&w=32&h=32",
+            "medium": "https://images.unsplash.com/profile-1549045861750-e054f599d509?ixlib=rb-4.0.3&crop=faces&fit=crop&w=64&h=64",
+            "large": "https://images.unsplash.com/profile-1549045861750-e054f599d509?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128"
+          },
+          "instagram_username": "seans_devil",
+          "total_collections": 1,
+          "total_likes": 193,
+          "total_photos": 70,
+          "total_promoted_photos": 8,
+          "accepted_tos": true,
+          "for_hire": true,
+          "social": {
+            "instagram_username": "seans_devil",
+            "portfolio_url": "http://www.inspiredfilmstudios.com",
+            "twitter_username": "seanditd",
+            "paypal_email": null
+          }
+        },
+        "tags": [
+          {
+            "type": "search",
+            "title": "harry"
+          },
+          {
+            "type": "search",
+            "title": "potter"
+          },
+          {
+            "type": "landing_page",
+            "title": "dragon",
+            "source": {
+              "ancestry": {
+                "type": {
+                  "slug": "images",
+                  "pretty_slug": "Images"
+                },
+                "category": {
+                  "slug": "animals",
+                  "pretty_slug": "Animals"
+                },
+                "subcategory": {
+                  "slug": "dragon",
+                  "pretty_slug": "Dragon"
+                }
+              },
+              "title": "Dragon images & pictures",
+              "subtitle": "Download free dragon images",
+              "description": "Depictions of dragons stretch back into ancient times and cover various cultures and civilizations. Access pristine, HD dragon images that cover all different types of depictions throughout history on Unsplash. 100% free.",
+              "meta_title": "27+ Dragon Pictures | Download Free Images on Unsplash",
+              "meta_description": "Choose from hundreds of free dragon pictures. Download HD dragon photos for free on Unsplash.",
+              "cover_photo": {
+                "id": "HKxqlQiFu-A",
+                "slug": "multicolored-dragon-wallpaper-HKxqlQiFu-A",
+                "alternative_slugs": {
+                  "en": "multicolored-dragon-wallpaper-HKxqlQiFu-A"
+                },
+                "created_at": "2018-04-02T00:15:14Z",
+                "updated_at": "2024-03-11T13:04:13Z",
+                "promoted_at": null,
+                "width": 6000,
+                "height": 4000,
+                "color": "#262626",
+                "blur_hash": "LH9s#Ts:0LR*njayW;j[E1WV%2oL",
+                "description": "拍摄于印刷出版工艺学校",
+                "alt_description": "multicolored dragon wallpaper",
+                "breadcrumbs": [],
+                "urls": {
+                  "raw": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3",
+                  "full": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb",
+                  "regular": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
+                  "small": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max",
+                  "thumb": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max",
+                  "small_s3": "https://s3.us-west-2.amazonaws.com/images.unsplash.com/small/photo-1522628037257-f925ec1e03df"
+                },
+                "links": {
+                  "self": "https://api.unsplash.com/photos/multicolored-dragon-wallpaper-HKxqlQiFu-A",
+                  "html": "https://unsplash.com/photos/multicolored-dragon-wallpaper-HKxqlQiFu-A",
+                  "download": "https://unsplash.com/photos/HKxqlQiFu-A/download",
+                  "download_location": "https://api.unsplash.com/photos/HKxqlQiFu-A/download"
+                },
+                "likes": 379,
+                "liked_by_user": false,
+                "current_user_collections": [],
+                "sponsorship": null,
+                "topic_submissions": {},
+                "premium": false,
+                "plus": false,
+                "user": {
+                  "id": "EDpEV14H6xQ",
+                  "updated_at": "2024-01-31T01:18:59Z",
+                  "username": "wind_knight",
+                  "name": "嘲 风",
+                  "first_name": "嘲",
+                  "last_name": "风",
+                  "twitter_username": null,
+                  "portfolio_url": null,
+                  "bio": null,
+                  "location": null,
+                  "links": {
+                    "self": "https://api.unsplash.com/users/wind_knight",
+                    "html": "https://unsplash.com/@wind_knight",
+                    "photos": "https://api.unsplash.com/users/wind_knight/photos",
+                    "likes": "https://api.unsplash.com/users/wind_knight/likes",
+                    "portfolio": "https://api.unsplash.com/users/wind_knight/portfolio",
+                    "following": "https://api.unsplash.com/users/wind_knight/following",
+                    "followers": "https://api.unsplash.com/users/wind_knight/followers"
+                  },
+                  "profile_image": {
+                    "small": "https://images.unsplash.com/profile-1492131173119-58ffba98d55a?ixlib=rb-4.0.3&crop=faces&fit=crop&w=32&h=32",
+                    "medium": "https://images.unsplash.com/profile-1492131173119-58ffba98d55a?ixlib=rb-4.0.3&crop=faces&fit=crop&w=64&h=64",
+                    "large": "https://images.unsplash.com/profile-1492131173119-58ffba98d55a?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128"
+                  },
+                  "instagram_username": null,
+                  "total_collections": 0,
+                  "total_likes": 223,
+                  "total_photos": 46,
+                  "total_promoted_photos": 0,
+                  "accepted_tos": true,
+                  "for_hire": false,
+                  "social": {
+                    "instagram_username": null,
+                    "portfolio_url": null,
+                    "twitter_username": null,
+                    "paypal_email": null
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "alternative_slugs": {
+          "$ref": "#/definitions/AlternativeSlugs"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "promoted_at": {
+          "type": "string"
+        },
+        "width": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "color": {
+          "type": "string"
+        },
+        "blur_hash": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "alt_description": {
+          "type": "string"
+        },
+        "breadcrumbs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Breadcrumb"
+          }
+        },
+        "urls": {
+          "$ref": "#/definitions/Urls"
+        },
+        "links": {
+          "$ref": "#/definitions/Links"
+        },
+        "likes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "liked_by_user": {
+          "type": "boolean"
+        },
+        "current_user_collections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sponsorship": {
+          "type": "string"
+        },
+        "topic_submissions": {
+          "$ref": "#/definitions/TopicSubmissions"
+        },
+        "asset_type": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "slug",
+        "alternative_slugs",
+        "created_at",
+        "updated_at",
+        "promoted_at",
+        "width",
+        "height",
+        "color",
+        "blur_hash",
+        "description",
+        "alt_description",
+        "breadcrumbs",
+        "urls",
+        "links",
+        "likes",
+        "liked_by_user",
+        "current_user_collections",
+        "sponsorship",
+        "topic_submissions",
+        "asset_type",
+        "user",
+        "tags"
+      ]
+    },
+    "AlternativeSlugs": {
+      "title": "AlternativeSlugs",
+      "example": {
+        "en": "shallow-focus-photo-of-dragon-on-gray-building-F6920BvzrZE",
+        "es": "foto-de-enfoque-superficial-de-dragon-en-edificio-gris-F6920BvzrZE",
+        "ja": "灰色の建物にドラゴンの浅い焦点の写真-F6920BvzrZE",
+        "fr": "photo-de-mise-au-point-peu-profonde-de-dragon-sur-un-batiment-gris-F6920BvzrZE",
+        "it": "foto-di-messa-a-fuoco-superficiale-del-drago-sulledificio-grigio-F6920BvzrZE",
+        "ko": "회색-건물에-용의-얕은-초점-사진-F6920BvzrZE",
+        "de": "foto-mit-flachem-fokus-von-drache-auf-grauem-gebaude-F6920BvzrZE",
+        "pt": "foto-de-foco-raso-do-dragao-no-edificio-cinza-F6920BvzrZE"
+      },
+      "type": "object",
+      "properties": {
+        "en": {
+          "type": "string"
+        },
+        "es": {
+          "type": "string"
+        },
+        "ja": {
+          "type": "string"
+        },
+        "fr": {
+          "type": "string"
+        },
+        "it": {
+          "type": "string"
+        },
+        "ko": {
+          "type": "string"
+        },
+        "de": {
+          "type": "string"
+        },
+        "pt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "en"
+      ]
+    },
+    "Breadcrumb": {
+      "title": "Breadcrumb",
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "index": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "Breadcrumb1": {
+      "title": "Breadcrumb1",
+      "example": {
+        "slug": "images",
+        "title": "1,000,000+ Free Images",
+        "index": 0,
+        "type": "landing_page"
+      },
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "index": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "slug",
+        "title",
+        "index",
+        "type"
+      ]
+    },
+    "Urls": {
+      "title": "Urls",
+      "example": {
+        "raw": "https://images.unsplash.com/photo-1577493340887-b7bfff550145?ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA&ixlib=rb-4.0.3",
+        "full": "https://images.unsplash.com/photo-1577493340887-b7bfff550145?crop=entropy&cs=srgb&fm=jpg&ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA&ixlib=rb-4.0.3&q=85",
+        "regular": "https://images.unsplash.com/photo-1577493340887-b7bfff550145?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA&ixlib=rb-4.0.3&q=80&w=1080",
+        "small": "https://images.unsplash.com/photo-1577493340887-b7bfff550145?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA&ixlib=rb-4.0.3&q=80&w=400",
+        "thumb": "https://images.unsplash.com/photo-1577493340887-b7bfff550145?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA&ixlib=rb-4.0.3&q=80&w=200",
+        "small_s3": "https://s3.us-west-2.amazonaws.com/images.unsplash.com/small/photo-1577493340887-b7bfff550145"
+      },
+      "type": "object",
+      "properties": {
+        "raw": {
+          "type": "string"
+        },
+        "full": {
+          "type": "string"
+        },
+        "regular": {
+          "type": "string"
+        },
+        "small": {
+          "type": "string"
+        },
+        "thumb": {
+          "type": "string"
+        },
+        "small_s3": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "raw",
+        "full",
+        "regular",
+        "small",
+        "thumb",
+        "small_s3"
+      ]
+    },
+    "Links": {
+      "title": "Links",
+      "example": {
+        "self": "https://api.unsplash.com/photos/shallow-focus-photo-of-dragon-on-gray-building-F6920BvzrZE",
+        "html": "https://unsplash.com/photos/shallow-focus-photo-of-dragon-on-gray-building-F6920BvzrZE",
+        "download": "https://unsplash.com/photos/F6920BvzrZE/download?ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA",
+        "download_location": "https://api.unsplash.com/photos/F6920BvzrZE/download?ixid=M3w1Nzk1OTN8MHwxfHNlYXJjaHwxfHxkcmFnb258ZW58MHx8fHwxNzEwNTkzMDk5fDA"
+      },
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "string"
+        },
+        "html": {
+          "type": "string"
+        },
+        "download": {
+          "type": "string"
+        },
+        "download_location": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "self",
+        "html",
+        "download",
+        "download_location"
+      ]
+    },
+    "TopicSubmissions": {
+      "title": "TopicSubmissions",
+      "example": {},
+      "type": "object",
+      "properties": {
+        "nature": {
+          "$ref": "#/definitions/Nature"
+        },
+        "wallpapers": {
+          "$ref": "#/definitions/Wallpapers"
+        }
+      }
+    },
+    "Nature": {
+      "title": "Nature",
+      "example": {
+        "status": "approved",
+        "approved_on": "2020-05-01T11:20:10Z"
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "approved_on": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "approved_on"
+      ]
+    },
+    "Wallpapers": {
+      "title": "Wallpapers",
+      "example": {
+        "status": "approved",
+        "approved_on": "2020-05-01T11:20:12Z"
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "approved_on": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "approved_on"
+      ]
+    },
+    "User": {
+      "title": "User",
+      "example": {
+        "id": "TgBaeKr_KM0",
+        "updated_at": "2023-09-12T23:12:04Z",
+        "username": "seansinspired",
+        "name": "Sean Thomas",
+        "first_name": "Sean",
+        "last_name": "Thomas",
+        "twitter_username": "seanditd",
+        "portfolio_url": "http://www.inspiredfilmstudios.com",
+        "bio": "instagram- @seansdevil\r\nTwitter - @seanditd\r\n\r\nFollow me and show me how you used my photos! I wanna see!",
+        "location": "Nashville Tennesee ",
+        "links": {
+          "self": "https://api.unsplash.com/users/seansinspired",
+          "html": "https://unsplash.com/@seansinspired",
+          "photos": "https://api.unsplash.com/users/seansinspired/photos",
+          "likes": "https://api.unsplash.com/users/seansinspired/likes",
+          "portfolio": "https://api.unsplash.com/users/seansinspired/portfolio",
+          "following": "https://api.unsplash.com/users/seansinspired/following",
+          "followers": "https://api.unsplash.com/users/seansinspired/followers"
+        },
+        "profile_image": {
+          "small": "https://images.unsplash.com/profile-1549045861750-e054f599d509?ixlib=rb-4.0.3&crop=faces&fit=crop&w=32&h=32",
+          "medium": "https://images.unsplash.com/profile-1549045861750-e054f599d509?ixlib=rb-4.0.3&crop=faces&fit=crop&w=64&h=64",
+          "large": "https://images.unsplash.com/profile-1549045861750-e054f599d509?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128"
+        },
+        "instagram_username": "seans_devil",
+        "total_collections": 1,
+        "total_likes": 193,
+        "total_photos": 70,
+        "total_promoted_photos": 8,
+        "accepted_tos": true,
+        "for_hire": true,
+        "social": {
+          "instagram_username": "seans_devil",
+          "portfolio_url": "http://www.inspiredfilmstudios.com",
+          "twitter_username": "seanditd",
+          "paypal_email": null
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "twitter_username": {
+          "type": "string"
+        },
+        "portfolio_url": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "links": {
+          "$ref": "#/definitions/Links1"
+        },
+        "profile_image": {
+          "$ref": "#/definitions/ProfileImage"
+        },
+        "instagram_username": {
+          "type": "string"
+        },
+        "total_collections": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_likes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_photos": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_promoted_photos": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "accepted_tos": {
+          "type": "boolean"
+        },
+        "for_hire": {
+          "type": "boolean"
+        },
+        "social": {
+          "$ref": "#/definitions/Social"
+        }
+      },
+      "required": [
+        "id",
+        "updated_at",
+        "username",
+        "name",
+        "first_name",
+        "last_name",
+        "twitter_username",
+        "portfolio_url",
+        "bio",
+        "location",
+        "links",
+        "profile_image",
+        "instagram_username",
+        "total_collections",
+        "total_likes",
+        "total_photos",
+        "total_promoted_photos",
+        "accepted_tos",
+        "for_hire",
+        "social"
+      ]
+    },
+    "Links1": {
+      "title": "Links1",
+      "example": {
+        "self": "https://api.unsplash.com/users/seansinspired",
+        "html": "https://unsplash.com/@seansinspired",
+        "photos": "https://api.unsplash.com/users/seansinspired/photos",
+        "likes": "https://api.unsplash.com/users/seansinspired/likes",
+        "portfolio": "https://api.unsplash.com/users/seansinspired/portfolio",
+        "following": "https://api.unsplash.com/users/seansinspired/following",
+        "followers": "https://api.unsplash.com/users/seansinspired/followers"
+      },
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "string"
+        },
+        "html": {
+          "type": "string"
+        },
+        "photos": {
+          "type": "string"
+        },
+        "likes": {
+          "type": "string"
+        },
+        "portfolio": {
+          "type": "string"
+        },
+        "following": {
+          "type": "string"
+        },
+        "followers": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "self",
+        "html",
+        "photos",
+        "likes",
+        "portfolio",
+        "following",
+        "followers"
+      ]
+    },
+    "ProfileImage": {
+      "title": "ProfileImage",
+      "example": {
+        "small": "https://images.unsplash.com/profile-1549045861750-e054f599d509?ixlib=rb-4.0.3&crop=faces&fit=crop&w=32&h=32",
+        "medium": "https://images.unsplash.com/profile-1549045861750-e054f599d509?ixlib=rb-4.0.3&crop=faces&fit=crop&w=64&h=64",
+        "large": "https://images.unsplash.com/profile-1549045861750-e054f599d509?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128"
+      },
+      "type": "object",
+      "properties": {
+        "small": {
+          "type": "string"
+        },
+        "medium": {
+          "type": "string"
+        },
+        "large": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "small",
+        "medium",
+        "large"
+      ]
+    },
+    "Social": {
+      "title": "Social",
+      "example": {
+        "instagram_username": "seans_devil",
+        "portfolio_url": "http://www.inspiredfilmstudios.com",
+        "twitter_username": "seanditd",
+        "paypal_email": null
+      },
+      "type": "object",
+      "properties": {
+        "instagram_username": {
+          "type": "string"
+        },
+        "portfolio_url": {
+          "type": "string"
+        },
+        "twitter_username": {
+          "type": "string"
+        },
+        "paypal_email": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "instagram_username",
+        "portfolio_url",
+        "twitter_username",
+        "paypal_email"
+      ]
+    },
+    "Tag": {
+      "title": "Tag",
+      "example": {
+        "type": "search",
+        "title": "harry"
+      },
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/definitions/Source"
+        }
+      },
+      "required": [
+        "type",
+        "title"
+      ]
+    },
+    "Source": {
+      "title": "Source",
+      "example": {
+        "ancestry": {
+          "type": {
+            "slug": "images",
+            "pretty_slug": "Images"
+          },
+          "category": {
+            "slug": "animals",
+            "pretty_slug": "Animals"
+          },
+          "subcategory": {
+            "slug": "dragon",
+            "pretty_slug": "Dragon"
+          }
+        },
+        "title": "Dragon images & pictures",
+        "subtitle": "Download free dragon images",
+        "description": "Depictions of dragons stretch back into ancient times and cover various cultures and civilizations. Access pristine, HD dragon images that cover all different types of depictions throughout history on Unsplash. 100% free.",
+        "meta_title": "27+ Dragon Pictures | Download Free Images on Unsplash",
+        "meta_description": "Choose from hundreds of free dragon pictures. Download HD dragon photos for free on Unsplash.",
+        "cover_photo": {
+          "id": "HKxqlQiFu-A",
+          "slug": "multicolored-dragon-wallpaper-HKxqlQiFu-A",
+          "alternative_slugs": {
+            "en": "multicolored-dragon-wallpaper-HKxqlQiFu-A"
+          },
+          "created_at": "2018-04-02T00:15:14Z",
+          "updated_at": "2024-03-11T13:04:13Z",
+          "promoted_at": null,
+          "width": 6000,
+          "height": 4000,
+          "color": "#262626",
+          "blur_hash": "LH9s#Ts:0LR*njayW;j[E1WV%2oL",
+          "description": "拍摄于印刷出版工艺学校",
+          "alt_description": "multicolored dragon wallpaper",
+          "breadcrumbs": [],
+          "urls": {
+            "raw": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3",
+            "full": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb",
+            "regular": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
+            "small": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max",
+            "thumb": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max",
+            "small_s3": "https://s3.us-west-2.amazonaws.com/images.unsplash.com/small/photo-1522628037257-f925ec1e03df"
+          },
+          "links": {
+            "self": "https://api.unsplash.com/photos/multicolored-dragon-wallpaper-HKxqlQiFu-A",
+            "html": "https://unsplash.com/photos/multicolored-dragon-wallpaper-HKxqlQiFu-A",
+            "download": "https://unsplash.com/photos/HKxqlQiFu-A/download",
+            "download_location": "https://api.unsplash.com/photos/HKxqlQiFu-A/download"
+          },
+          "likes": 379,
+          "liked_by_user": false,
+          "current_user_collections": [],
+          "sponsorship": null,
+          "topic_submissions": {},
+          "premium": false,
+          "plus": false,
+          "user": {
+            "id": "EDpEV14H6xQ",
+            "updated_at": "2024-01-31T01:18:59Z",
+            "username": "wind_knight",
+            "name": "嘲 风",
+            "first_name": "嘲",
+            "last_name": "风",
+            "twitter_username": null,
+            "portfolio_url": null,
+            "bio": null,
+            "location": null,
+            "links": {
+              "self": "https://api.unsplash.com/users/wind_knight",
+              "html": "https://unsplash.com/@wind_knight",
+              "photos": "https://api.unsplash.com/users/wind_knight/photos",
+              "likes": "https://api.unsplash.com/users/wind_knight/likes",
+              "portfolio": "https://api.unsplash.com/users/wind_knight/portfolio",
+              "following": "https://api.unsplash.com/users/wind_knight/following",
+              "followers": "https://api.unsplash.com/users/wind_knight/followers"
+            },
+            "profile_image": {
+              "small": "https://images.unsplash.com/profile-1492131173119-58ffba98d55a?ixlib=rb-4.0.3&crop=faces&fit=crop&w=32&h=32",
+              "medium": "https://images.unsplash.com/profile-1492131173119-58ffba98d55a?ixlib=rb-4.0.3&crop=faces&fit=crop&w=64&h=64",
+              "large": "https://images.unsplash.com/profile-1492131173119-58ffba98d55a?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128"
+            },
+            "instagram_username": null,
+            "total_collections": 0,
+            "total_likes": 223,
+            "total_photos": 46,
+            "total_promoted_photos": 0,
+            "accepted_tos": true,
+            "for_hire": false,
+            "social": {
+              "instagram_username": null,
+              "portfolio_url": null,
+              "twitter_username": null,
+              "paypal_email": null
+            }
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "ancestry": {
+          "$ref": "#/definitions/Ancestry"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "meta_title": {
+          "type": "string"
+        },
+        "meta_description": {
+          "type": "string"
+        },
+        "cover_photo": {
+          "$ref": "#/definitions/CoverPhoto"
+        }
+      },
+      "required": [
+        "ancestry",
+        "title",
+        "subtitle",
+        "description",
+        "meta_title",
+        "meta_description",
+        "cover_photo"
+      ]
+    },
+    "Ancestry": {
+      "title": "Ancestry",
+      "example": {
+        "type": {
+          "slug": "images",
+          "pretty_slug": "Images"
+        },
+        "category": {
+          "slug": "animals",
+          "pretty_slug": "Animals"
+        },
+        "subcategory": {
+          "slug": "dragon",
+          "pretty_slug": "Dragon"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/Type"
+        },
+        "category": {
+          "$ref": "#/definitions/Category"
+        },
+        "subcategory": {
+          "$ref": "#/definitions/Subcategory"
+        }
+      },
+      "required": [
+        "type",
+        "category",
+        "subcategory"
+      ]
+    },
+    "Type": {
+      "title": "Type",
+      "example": {
+        "slug": "images",
+        "pretty_slug": "Images"
+      },
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "pretty_slug": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "slug",
+        "pretty_slug"
+      ]
+    },
+    "Category": {
+      "title": "Category",
+      "example": {
+        "slug": "animals",
+        "pretty_slug": "Animals"
+      },
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "pretty_slug": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "slug",
+        "pretty_slug"
+      ]
+    },
+    "Subcategory": {
+      "title": "Subcategory",
+      "example": {
+        "slug": "dragon",
+        "pretty_slug": "Dragon"
+      },
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "pretty_slug": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "slug",
+        "pretty_slug"
+      ]
+    },
+    "CoverPhoto": {
+      "title": "CoverPhoto",
+      "example": {
+        "id": "HKxqlQiFu-A",
+        "slug": "multicolored-dragon-wallpaper-HKxqlQiFu-A",
+        "alternative_slugs": {
+          "en": "multicolored-dragon-wallpaper-HKxqlQiFu-A"
+        },
+        "created_at": "2018-04-02T00:15:14Z",
+        "updated_at": "2024-03-11T13:04:13Z",
+        "promoted_at": null,
+        "width": 6000,
+        "height": 4000,
+        "color": "#262626",
+        "blur_hash": "LH9s#Ts:0LR*njayW;j[E1WV%2oL",
+        "description": "拍摄于印刷出版工艺学校",
+        "alt_description": "multicolored dragon wallpaper",
+        "breadcrumbs": [],
+        "urls": {
+          "raw": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3",
+          "full": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb",
+          "regular": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
+          "small": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max",
+          "thumb": "https://images.unsplash.com/photo-1522628037257-f925ec1e03df?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max",
+          "small_s3": "https://s3.us-west-2.amazonaws.com/images.unsplash.com/small/photo-1522628037257-f925ec1e03df"
+        },
+        "links": {
+          "self": "https://api.unsplash.com/photos/multicolored-dragon-wallpaper-HKxqlQiFu-A",
+          "html": "https://unsplash.com/photos/multicolored-dragon-wallpaper-HKxqlQiFu-A",
+          "download": "https://unsplash.com/photos/HKxqlQiFu-A/download",
+          "download_location": "https://api.unsplash.com/photos/HKxqlQiFu-A/download"
+        },
+        "likes": 379,
+        "liked_by_user": false,
+        "current_user_collections": [],
+        "sponsorship": null,
+        "topic_submissions": {},
+        "premium": false,
+        "plus": false,
+        "user": {
+          "id": "EDpEV14H6xQ",
+          "updated_at": "2024-01-31T01:18:59Z",
+          "username": "wind_knight",
+          "name": "嘲 风",
+          "first_name": "嘲",
+          "last_name": "风",
+          "twitter_username": null,
+          "portfolio_url": null,
+          "bio": null,
+          "location": null,
+          "links": {
+            "self": "https://api.unsplash.com/users/wind_knight",
+            "html": "https://unsplash.com/@wind_knight",
+            "photos": "https://api.unsplash.com/users/wind_knight/photos",
+            "likes": "https://api.unsplash.com/users/wind_knight/likes",
+            "portfolio": "https://api.unsplash.com/users/wind_knight/portfolio",
+            "following": "https://api.unsplash.com/users/wind_knight/following",
+            "followers": "https://api.unsplash.com/users/wind_knight/followers"
+          },
+          "profile_image": {
+            "small": "https://images.unsplash.com/profile-1492131173119-58ffba98d55a?ixlib=rb-4.0.3&crop=faces&fit=crop&w=32&h=32",
+            "medium": "https://images.unsplash.com/profile-1492131173119-58ffba98d55a?ixlib=rb-4.0.3&crop=faces&fit=crop&w=64&h=64",
+            "large": "https://images.unsplash.com/profile-1492131173119-58ffba98d55a?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128"
+          },
+          "instagram_username": null,
+          "total_collections": 0,
+          "total_likes": 223,
+          "total_photos": 46,
+          "total_promoted_photos": 0,
+          "accepted_tos": true,
+          "for_hire": false,
+          "social": {
+            "instagram_username": null,
+            "portfolio_url": null,
+            "twitter_username": null,
+            "paypal_email": null
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "alternative_slugs": {
+          "$ref": "#/definitions/AlternativeSlugs"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "promoted_at": {
+          "type": "string"
+        },
+        "width": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "color": {
+          "type": "string"
+        },
+        "blur_hash": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "alt_description": {
+          "type": "string"
+        },
+        "breadcrumbs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Breadcrumb"
+          }
+        },
+        "urls": {
+          "$ref": "#/definitions/Urls"
+        },
+        "links": {
+          "$ref": "#/definitions/Links"
+        },
+        "likes": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "liked_by_user": {
+          "type": "boolean"
+        },
+        "current_user_collections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sponsorship": {
+          "type": "string"
+        },
+        "topic_submissions": {
+          "$ref": "#/definitions/TopicSubmissions1"
+        },
+        "premium": {
+          "type": "boolean"
+        },
+        "plus": {
+          "type": "boolean"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "required": [
+        "id",
+        "slug",
+        "alternative_slugs",
+        "created_at",
+        "updated_at",
+        "promoted_at",
+        "width",
+        "height",
+        "color",
+        "blur_hash",
+        "description",
+        "alt_description",
+        "breadcrumbs",
+        "urls",
+        "links",
+        "likes",
+        "liked_by_user",
+        "current_user_collections",
+        "sponsorship",
+        "topic_submissions",
+        "premium",
+        "plus",
+        "user"
+      ]
+    },
+    "TopicSubmissions1": {
+      "title": "TopicSubmissions1",
+      "example": {},
+      "type": "object",
+      "properties": {
+        "textures-patterns": {
+          "$ref": "#/definitions/TexturesPatterns"
+        },
+        "blue": {
+          "$ref": "#/definitions/Blue"
+        },
+        "travel": {
+          "$ref": "#/definitions/Travel"
+        },
+        "nature": {
+          "$ref": "#/definitions/Nature"
+        },
+        "wallpapers": {
+          "$ref": "#/definitions/Wallpapers"
+        },
+        "animals": {
+          "$ref": "#/definitions/Animals"
+        }
+      }
+    },
+    "TexturesPatterns": {
+      "title": "TexturesPatterns",
+      "example": {
+        "status": "approved",
+        "approved_on": "2020-04-06T14:20:11Z"
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "approved_on": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "approved_on"
+      ]
+    },
+    "Blue": {
+      "title": "Blue",
+      "example": {
+        "status": "approved",
+        "approved_on": "2023-07-31T17:31:58Z"
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "approved_on": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "approved_on"
+      ]
+    },
+    "Travel": {
+      "title": "Travel",
+      "example": {
+        "status": "approved",
+        "approved_on": "2023-12-06T17:36:32Z"
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "approved_on": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "approved_on"
+      ]
+    },
+    "Animals": {
+      "title": "Animals",
+      "example": {
+        "status": "approved",
+        "approved_on": "2021-06-09T15:10:40Z"
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "approved_on": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "approved_on"
+      ]
+    },
+    "200-Imagensubidacorrectamente": {
+      "title": "200-Imagensubidacorrectamente",
+      "example": {
+        "message": "Imagen subida exitosamente"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "200-Cambiologrado": {
+      "title": "200-Cambiologrado",
+      "example": {
+        "message": "Archivo renombrado de prueba4.png a prueba5.png"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
+}
