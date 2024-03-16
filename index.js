@@ -3,11 +3,11 @@ import dotenv from "dotenv";
 import cors from "cors";
 import conectarDB from "./config/db.js";
 import usuarioRoutes from "./routes/usuarioRoutes.js";
-import proyectoRoutes from "./routes/proyectoRoutes.js";
-import tareaRoutes from "./routes/tareaRoutes.js";
+import fileRoutes from "./routes/fileRoutes.js";
 import passport from "passport";
 import session from "express-session";
 import "./config/passport.js"; // Importar la configuración de Passport
+import fileUpload from "express-fileupload";
 
 const app = express();
 app.use(express.json());
@@ -15,6 +15,13 @@ app.use(express.json());
 dotenv.config();
 
 conectarDB();
+
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "./uploads",
+  })
+);
 
 // Configurar CORS
 const whitelist = [process.env.FRONTEND_URL];
@@ -41,14 +48,17 @@ app.use(
   })
 );
 
+app.use(express.static("images"));
+
 // Inicializar Passport y restaurar la sesión, si existe
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Routing
 app.use("/api/usuarios", usuarioRoutes);
-app.use("/api/proyectos", proyectoRoutes);
-app.use("/api/tareas", tareaRoutes);
+app.use("/api/files", fileRoutes);
+// app.use("/api/proyectos", proyectoRoutes);
+// app.use("/api/tareas", tareaRoutes);
 
 const PORT = process.env.PORT || 4000;
 const servidor = app.listen(PORT, () => {
