@@ -1,6 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
+
 import conectarDB from "./config/db.js";
 import usuarioRoutes from "./routes/usuarioRoutes.js";
 import fileRoutes from "./routes/fileRoutes.js";
@@ -16,6 +20,17 @@ app.use(express.json());
 dotenv.config();
 
 conectarDB();
+
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Mi API",
+      version: "1.0.0",
+    },
+  },
+  apis: ["./routes/*.js"], // path to the API docs
+};
 
 app.use(
   fileUpload({
@@ -49,7 +64,10 @@ app.use(
   })
 );
 
+const specs = swaggerJsdoc(options);
+
 app.use(express.static("images"));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use(passport.initialize());
 app.use(passport.session());

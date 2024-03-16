@@ -36,7 +36,7 @@ router.post("/", checkAuth, async (req, res) => {
 router.put("/:oldName/:newName", checkAuth, async (req, res) => {
   const { oldName, newName } = req.params;
   await reNameFile(oldName, newName);
-  res.json({ message: `File renamed from ${oldName} to ${newName}` });
+  res.json({ message: `Archivo renombrado de ${oldName} a ${newName}` });
 });
 
 export default router;

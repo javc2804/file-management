@@ -3,15 +3,45 @@ import generarId from "../helpers/generarId.js";
 import generarJWT from "../helpers/generarJWT.js";
 import { emailRegistro, emailOlvidePassword } from "../helpers/email.js";
 
+const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+
 const registrar = async (req, res) => {
+  const { email, nombre, password } = req.body;
+
+  // Validaciones para el registro
+
+  if (!email || !nombre || !password) {
+    return res
+      .status(400)
+      .json({ msg: "Nombre, correo electrónico y contraseña son requeridos" });
+  }
+
+  if (password.length <= 6) {
+    return res
+      .status(400)
+      .json({ msg: "La contraseña debe tener más de 6 dígitos" });
+  }
+
+  if (!emailRegex.test(email)) {
+    return res
+      .status(400)
+      .json({ msg: "Formato de correo electrónico inválido" });
+  }
+
+  if (!emailRegex.test(email)) {
+    return res
+      .status(400)
+      .json({ msg: "Formato de correo electrónico inválido" });
+  }
   // Evitar registros duplicados
-  const { email } = req.body;
   const existeUsuario = await Usuario.findOne({ email });
 
   if (existeUsuario) {
     const error = new Error("Usuario ya registrado");
     return res.status(400).json({ msg: error.message });
   }
+
+  // Fin de Validaciones para el registro
 
   try {
     const usuario = new Usuario(req.body);
@@ -24,12 +54,12 @@ const registrar = async (req, res) => {
       nombre: usuario.nombre,
       token: usuario.token,
     });
-
+    res.status(201);
     res.json({
       msg: "Usuario Creado Correctamente, Revisa tu Email para confirmar tu cuenta",
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ msg: "Ha ocurrido un error", error: error.message });
   }
 };
 
@@ -84,9 +114,9 @@ const confirmar = async (req, res) => {
     usuarioConfirmar.confirmado = true;
     usuarioConfirmar.token = "";
     await usuarioConfirmar.save();
-    res.json({ msg: "Usuario Confirmado Correctamente" });
+    res.status(201).json({ msg: "Usuario Confirmado Correctamente" });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ msg: "Ha ocurrido un error", error: error.message });
   }
 };
 
@@ -111,7 +141,7 @@ const olvidePassword = async (req, res) => {
 
     res.json({ msg: "Hemos enviado un email con las instrucciones" });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ msg: "Ha ocurrido un error", error: error.message });
   }
 };
 
@@ -130,7 +160,6 @@ const comprobarToken = async (req, res) => {
 
 const nuevoPassword = async (req, res) => {
   const { token } = req.params;
-  console.log(req.body);
 
   const { password } = req.body;
 
@@ -143,18 +172,14 @@ const nuevoPassword = async (req, res) => {
       await usuario.save();
       res.json({ msg: "Password Modificado Correctamente" });
     } catch (error) {
-      console.log(error);
+      res
+        .status(500)
+        .json({ msg: "Ha ocurrido un error", error: error.message });
     }
   } else {
     const error = new Error("Token no válido");
     return res.status(404).json({ msg: error.message });
   }
-};
-
-const perfil = async (req, res) => {
-  const { usuario } = req;
-
-  res.json(usuario);
 };
 
 export {
@@ -164,5 +189,4 @@ export {
   olvidePassword,
   comprobarToken,
   nuevoPassword,
-  perfil,
 };
