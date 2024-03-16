@@ -7,7 +7,7 @@ import fileRoutes from "./routes/fileRoutes.js";
 import imageRoutes from "./routes/imageRoutes.js";
 import passport from "passport";
 import session from "express-session";
-import "./config/passport.js"; // Importar la configuración de Passport
+import "./config/passport.js";
 import fileUpload from "express-fileupload";
 
 const app = express();
@@ -51,7 +51,6 @@ app.use(
 
 app.use(express.static("images"));
 
-// Inicializar Passport y restaurar la sesión, si existe
 app.use(passport.initialize());
 app.use(passport.session());
 
