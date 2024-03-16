@@ -1,7 +1,6 @@
-import { searchImages } from "../services/unsplash.js";
-import { getImageById } from "../services/unsplash.js";
-import { uploadToS3 } from "../services/s3.js";
 import axios from "axios";
+import { searchImages, getImageById } from "../services/unsplash.js";
+import { uploadToS3 } from "../services/s3.js";
 
 export async function search(req, res) {
   const { query } = req.query;

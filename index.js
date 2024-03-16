@@ -1,19 +1,22 @@
 import express from "express";
 import dotenv from "dotenv";
+import conectarDB from "./config/db.js";
 import cors from "cors";
 
+// Documentacion
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerDocument from "./File-Management.postman_collection.json-Swagger20.json" assert { type: "json" };
 
-import conectarDB from "./config/db.js";
-import usuarioRoutes from "./routes/usuarioRoutes.js";
-import fileRoutes from "./routes/fileRoutes.js";
-import imageRoutes from "./routes/imageRoutes.js";
 import passport from "passport";
 import session from "express-session";
 import "./config/passport.js";
 import fileUpload from "express-fileupload";
+
+// Rutas
+import usuarioRoutes from "./routes/usuarioRoutes.js";
+import fileRoutes from "./routes/fileRoutes.js";
+import imageRoutes from "./routes/imageRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -30,7 +33,7 @@ const options = {
       version: "1.0.0",
     },
   },
-  apis: ["./routes/*.js"], // path to the API docs
+  apis: ["./routes/*.js"],
 };
 
 app.use(
