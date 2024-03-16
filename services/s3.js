@@ -88,3 +88,15 @@ export async function reNameFile(oldName, newName) {
     console.error(`Error: ${error.message}`);
   }
 }
+
+export async function uploadToS3(buffer, filename, contentType) {
+  const uploadParams = {
+    Bucket: AWS_BUCKET_NAME,
+    Key: filename,
+    Body: buffer,
+    ContentType: contentType,
+    ACL: "public-read",
+  };
+  const command = new PutObjectCommand(uploadParams);
+  return await client.send(command);
+}

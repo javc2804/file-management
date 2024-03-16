@@ -13,3 +13,13 @@ export async function searchImages(query) {
 
   return response.data.results;
 }
+
+export async function getImageById(id) {
+  const response = await axios.get(`https://api.unsplash.com/photos/${id}`, {
+    headers: {
+      Authorization: `Client-ID ${process.env.UNSPLASH_API_KEY}`,
+    },
+  });
+
+  return response.data;
+}

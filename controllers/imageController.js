@@ -1,4 +1,7 @@
 import { searchImages } from "../services/unsplash.js";
+import { getImageById } from "../services/unsplash.js";
+import { uploadToS3 } from "../services/s3.js";
+import axios from "axios";
 
 export async function search(req, res) {
   const { query } = req.query;
@@ -9,5 +12,31 @@ export async function search(req, res) {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error al buscar imágenes" });
+  }
+}
+
+export async function upload(req, res) {
+  const { id } = req.params;
+
+  try {
+    const image = await getImageById(id);
+    const response = await axios.get(image.urls.raw, {
+      responseType: "arraybuffer",
+    });
+    const filename = image.slug ? `${image.slug}.jpg` : `${id}.jpg`;
+
+    await uploadToS3(
+      response.data,
+      filename,
+      `${id}.jpg`,
+      response.headers["content-type"]
+    );
+
+    res.json({ message: "Imagen subida exitosamente" });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: `Error al subir la imagen: ${error.message}` });
   }
 }
