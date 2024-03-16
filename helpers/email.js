@@ -22,7 +22,7 @@ export const emailRegistro = async (datos) => {
     html: `<p>Hola: ${nombre} Comprueba tu cuenta en management</p>
     <p>Tu cuenta ya esta casi lista, solo debes comprobarla en el siguiente enlace: 
 
-    <a href="${process.env.BACKEND_URL}/api/usuarios/confirmar/${token}">Comprobar Cuenta</a>
+    <a href="${process.env.BACKEND_URL}/usuarios/confirmar/${token}">Comprobar Cuenta</a>
     
     <p>Si tu no creaste esta cuenta, puedes ignorar el mensaje</p>
     
