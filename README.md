@@ -46,3 +46,9 @@ Si prefieres ejecutar el proyecto en un contenedor Docker, sigue estos pasos:
 ## Enlaces
 
 - [Sitio en producción](https://file-management-v67d.onrender.com/)
+
+## Prueba Unitarias
+
+Para ejecutar las pruebas unitarias, utiliza el siguiente comando: `npm jest`
+
+Hay una prueba muy sencilla y muy corta, la cual es pasada, y pide un puerto para el envio de correo el cual no es necesario probar.
