@@ -77,6 +77,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routing
+
 app.use("/usuarios", usuarioRoutes);
 app.use("/files", fileRoutes);
 app.use("/images", imageRoutes);
