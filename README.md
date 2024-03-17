@@ -28,6 +28,7 @@ Entre los servicios que se tendrán que realizar están:
 
 1. Clona el repositorio: `git clone git@github.com:javc2804/file-management.git`
 2. Navega al directorio del proyecto: `cd file-management`
+
 3. Instala las dependencias: `npm install`
 
 ## Configuración
