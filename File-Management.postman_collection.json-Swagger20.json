@@ -18,28 +18,17 @@
       }
     }
   },
-  "schemes": [
-    "http",
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
     "/usuarios": {
       "post": {
         "summary": "Registro de usuarios",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "Registrodeusuarios",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [
           {
             "name": "Body",
@@ -132,14 +121,10 @@
     "/usuarios/login": {
       "post": {
         "summary": "Autenticar usuarios (tradicional)",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "Autenticarusuarios(tradicional)",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [
           {
             "name": "Body",
@@ -273,14 +258,10 @@
       "get": {
         "description": "Se debe de configurar correctamente las variables.\n\nComo tambien seleccionar el OAuth 2.0 como metodo.\n\nFinalmente debe de dar click en el boton de Get New Acces Token.",
         "summary": "Autenticación con 0Auth - google",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "Autenticacióncon0Auth-google",
         "deprecated": false,
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -290,9 +271,7 @@
         },
         "security": [
           {
-            "oauth2": [
-              "profile"
-            ]
+            "oauth2": ["profile"]
           }
         ]
       }
@@ -300,14 +279,10 @@
     "/usuarios/confirmar/7ckin5pkuvo1hp3uifpb": {
       "get": {
         "summary": "Confirmar cuenta token",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "Confirmarcuentatoken",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [],
         "responses": {
           "201": {
@@ -390,14 +365,10 @@
     "/usuarios/olvide-password": {
       "post": {
         "summary": "Solicitar token para cambiar clave",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "Solicitartokenparacambiarclave",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [
           {
             "name": "Body",
@@ -490,14 +461,10 @@
     "/usuarios/olvide-password/pate1cq9l6g1hp3ukfoe": {
       "get": {
         "summary": "Valida el token para cambiar el password",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "Validaeltokenparacambiarelpassword",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [],
         "responses": {
           "200": {
@@ -581,14 +548,10 @@
       "post": {
         "description": "Es importante tomar en cuenta que una vez enviado el correo se tendra un token, el cual debe ser proporcionado aqui para poder iniciar el cambio de clave.",
         "summary": "Almacena el nuevo password",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "Almacenaelnuevopassword",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [
           {
             "name": "Body",
@@ -682,17 +645,11 @@
       "post": {
         "description": "Se debe seleccionar una imagen primero para luego subirla.",
         "summary": "Subir imagen a S3",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "SubirimagenaS3",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
-        "consumes": [
-          "multipart/form-data"
-        ],
+        "produces": ["application/json; charset=utf-8"],
+        "consumes": ["multipart/form-data"],
         "parameters": [
           {
             "name": "file",
@@ -790,14 +747,10 @@
       "get": {
         "description": "Este endpoint permite obtener todas las imagenes del bucket.",
         "summary": "Obtener imagenes",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "Obtenerimagenes",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [],
         "responses": {
           "200": {
@@ -1013,14 +966,10 @@
       "get": {
         "description": "La descarga se debe de hacer por medio de un nombre o key conocido que se encuentre en el bucket.",
         "summary": "Descargar un archivo",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "Descargarunarchivo",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [],
         "responses": {
           "200": {
@@ -1108,14 +1057,10 @@
     "/files/prueba4.png/prueba5.png": {
       "put": {
         "summary": "Cambiar nombre de imagen",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "Cambiarnombredeimagen",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [],
         "responses": {
           "200": {
@@ -1166,14 +1111,10 @@
     "/files/gray-dragon-statue-in-tilt-shift-lens-gXyptwjk9aw.jpg": {
       "get": {
         "summary": "Obtener url a partir de nombre",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "Obtenerurlapartirdenombre",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [],
         "responses": {
           "200": {
@@ -1225,14 +1166,10 @@
       "get": {
         "description": "Permite buscar imagenes por palabra clave como query para traer coincidencia desde la api externa.",
         "summary": "Buscar imagen en unsplash",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "Buscarimagenenunsplash",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [
           {
             "name": "query",
@@ -1291,14 +1228,10 @@
       "post": {
         "description": "Para subir una imagen al s3 sin bajarla al local para luego subir, es necesario conocer el id de la imagen de unsplash, para eso primero se debe de consultar el get y copiar el id.",
         "summary": "Subir imagen desde unsplash a Bucket s3",
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "operationId": "SubirimagendesdeunsplashaBuckets3",
         "deprecated": false,
-        "produces": [
-          "application/json; charset=utf-8"
-        ],
+        "produces": ["application/json; charset=utf-8"],
         "parameters": [],
         "responses": {
           "200": {
@@ -1367,11 +1300,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "nombre",
-        "password",
-        "email"
-      ]
+      "required": ["nombre", "password", "email"]
     },
     "201-Registrodeusuarios": {
       "title": "201-Registrodeusuarios",
@@ -1384,9 +1313,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "msg"
-      ]
+      "required": ["msg"]
     },
     "400-Registrodeusuarios1": {
       "title": "400-Registrodeusuarios1",
@@ -1399,9 +1326,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "msg"
-      ]
+      "required": ["msg"]
     },
     "Autenticarusuarios(tradicional)Request": {
       "title": "Autenticarusuarios(tradicional)Request",
@@ -1418,10 +1343,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "password",
-        "email"
-      ]
+      "required": ["password", "email"]
     },
     "200-IniciodesesiónlogradoÉxito": {
       "title": "200-IniciodesesiónlogradoÉxito",
@@ -1446,12 +1368,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "_id",
-        "nombre",
-        "email",
-        "token"
-      ]
+      "required": ["_id", "nombre", "email", "token"]
     },
     "403-Usuarionoconfirmado1": {
       "title": "403-Usuarionoconfirmado1",
@@ -1464,9 +1381,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "msg"
-      ]
+      "required": ["msg"]
     },
     "404-Usuarionoencontrado1": {
       "title": "404-Usuarionoencontrado1",
@@ -1479,9 +1394,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "msg"
-      ]
+      "required": ["msg"]
     },
     "403-Autenticaciónfallida1": {
       "title": "403-Autenticaciónfallida1",
@@ -1494,9 +1407,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "msg"
-      ]
+      "required": ["msg"]
     },
     "200-Confirmado": {
       "title": "200-Confirmado",
@@ -1509,9 +1420,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "msg"
-      ]
+      "required": ["msg"]
     },
     "403-Tokeninvalido1": {
       "title": "403-Tokeninvalido1",
@@ -1524,9 +1433,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "msg"
-      ]
+      "required": ["msg"]
     },
     "SolicitartokenparacambiarclaveRequest": {
       "title": "SolicitartokenparacambiarclaveRequest",
@@ -1539,9 +1446,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "email"
-      ]
+      "required": ["email"]
     },
     "200-Enviodeemail": {
       "title": "200-Enviodeemail",
@@ -1554,9 +1459,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "msg"
-      ]
+      "required": ["msg"]
     },
     "404-Usuarioinexistente1": {
       "title": "404-Usuarioinexistente1",
@@ -1569,9 +1472,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "msg"
-      ]
+      "required": ["msg"]
     },
     "200-Validado": {
       "title": "200-Validado",
@@ -1584,9 +1485,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "msg"
-      ]
+      "required": ["msg"]
     },
     "404-Tokennoválido1": {
       "title": "404-Tokennoválido1",
@@ -1599,9 +1498,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "msg"
-      ]
+      "required": ["msg"]
     },
     "AlmacenaelnuevopasswordRequest": {
       "title": "AlmacenaelnuevopasswordRequest",
@@ -1614,9 +1511,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "password"
-      ]
+      "required": ["password"]
     },
     "201-Cambiodeclave": {
       "title": "201-Cambiodeclave",
@@ -1629,9 +1524,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "msg"
-      ]
+      "required": ["msg"]
     },
     "200-Imagensubidacorrectamente": {
       "title": "200-Imagensubidacorrectamente",
@@ -1655,9 +1548,7 @@
           "$ref": "#/definitions/Result"
         }
       },
-      "required": [
-        "result"
-      ]
+      "required": ["result"]
     },
     "Result": {
       "title": "Result",
@@ -1688,12 +1579,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "$metadata",
-        "Expiration",
-        "ETag",
-        "ServerSideEncryption"
-      ]
+      "required": ["$metadata", "Expiration", "ETag", "ServerSideEncryption"]
     },
     "Metadata": {
       "title": "Metadata",
@@ -1744,9 +1630,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "message"
-      ]
+      "required": ["message"]
     },
     "404-noencontroarchivo1": {
       "title": "404-noencontroarchivo1",
@@ -1759,9 +1643,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "error"
-      ]
+      "required": ["error"]
     },
     "200-Obtenerlistadeimagenesdebucket": {
       "title": "200-Obtenerlistadeimagenesdebucket",
@@ -1822,10 +1704,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "DisplayName",
-        "ID"
-      ]
+      "required": ["DisplayName", "ID"]
     },
     "Obtenerimagene": {
       "title": "Obtenerimagene",
@@ -1882,9 +1761,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "message"
-      ]
+      "required": ["message"]
     },
     "200-Consultacorrecta": {
       "title": "200-Consultacorrecta",
@@ -1897,9 +1774,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "url"
-      ]
+      "required": ["url"]
     },
     "200-Busquedaconresultado": {
       "title": "200-Busquedaconresultado",
@@ -2247,9 +2122,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "en"
-      ]
+      "required": ["en"]
     },
     "Breadcrumb": {
       "title": "Breadcrumb",
@@ -2294,12 +2167,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "slug",
-        "title",
-        "index",
-        "type"
-      ]
+      "required": ["slug", "title", "index", "type"]
     },
     "Urls": {
       "title": "Urls",
@@ -2332,14 +2200,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "raw",
-        "full",
-        "regular",
-        "small",
-        "thumb",
-        "small_s3"
-      ]
+      "required": ["raw", "full", "regular", "small", "thumb", "small_s3"]
     },
     "Links": {
       "title": "Links",
@@ -2364,12 +2225,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "self",
-        "html",
-        "download",
-        "download_location"
-      ]
+      "required": ["self", "html", "download", "download_location"]
     },
     "TopicSubmissions": {
       "title": "TopicSubmissions",
@@ -2399,10 +2255,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "status",
-        "approved_on"
-      ]
+      "required": ["status", "approved_on"]
     },
     "Wallpapers": {
       "title": "Wallpapers",
@@ -2419,10 +2272,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "status",
-        "approved_on"
-      ]
+      "required": ["status", "approved_on"]
     },
     "User": {
       "title": "User",
@@ -2619,11 +2469,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "small",
-        "medium",
-        "large"
-      ]
+      "required": ["small", "medium", "large"]
     },
     "Social": {
       "title": "Social",
@@ -2673,10 +2519,7 @@
           "$ref": "#/definitions/Source"
         }
       },
-      "required": [
-        "type",
-        "title"
-      ]
+      "required": ["type", "title"]
     },
     "Source": {
       "title": "Source",
@@ -2840,11 +2683,7 @@
           "$ref": "#/definitions/Subcategory"
         }
       },
-      "required": [
-        "type",
-        "category",
-        "subcategory"
-      ]
+      "required": ["type", "category", "subcategory"]
     },
     "Type": {
       "title": "Type",
@@ -2861,10 +2700,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "slug",
-        "pretty_slug"
-      ]
+      "required": ["slug", "pretty_slug"]
     },
     "Category": {
       "title": "Category",
@@ -2881,10 +2717,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "slug",
-        "pretty_slug"
-      ]
+      "required": ["slug", "pretty_slug"]
     },
     "Subcategory": {
       "title": "Subcategory",
@@ -2901,10 +2734,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "slug",
-        "pretty_slug"
-      ]
+      "required": ["slug", "pretty_slug"]
     },
     "CoverPhoto": {
       "title": "CoverPhoto",
@@ -3132,10 +2962,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "status",
-        "approved_on"
-      ]
+      "required": ["status", "approved_on"]
     },
     "Blue": {
       "title": "Blue",
@@ -3152,10 +2979,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "status",
-        "approved_on"
-      ]
+      "required": ["status", "approved_on"]
     },
     "Travel": {
       "title": "Travel",
@@ -3172,10 +2996,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "status",
-        "approved_on"
-      ]
+      "required": ["status", "approved_on"]
     },
     "Animals": {
       "title": "Animals",
@@ -3192,10 +3013,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "status",
-        "approved_on"
-      ]
+      "required": ["status", "approved_on"]
     },
     "200-Imagensubidacorrectamente1": {
       "title": "200-Imagensubidacorrectamente1",
@@ -3208,9 +3026,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "message"
-      ]
+      "required": ["message"]
     }
   },
   "security": [],
