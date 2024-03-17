@@ -70,3 +70,7 @@ Este sitio esta configurado con CI/CD para cualquier cambio inmediato por medio 
 Para ejecutar las pruebas unitarias, utiliza el siguiente comando: `npm jest`
 
 Hay una prueba muy sencilla y muy corta, la cual es pasada, y pide un puerto para el envio de correo el cual no es necesario probar.
+
+## Importante!
+
+Las imagenes que se descargan lo hacen en un directorio de nombre images en la raiz del proyecto. Importante configurar la variable de entorno de forma local.
