@@ -271,6 +271,7 @@
     },
     "/usuarios/auth/google": {
       "get": {
+        "description": "Se debe de configurar correctamente las variables.\n\nComo tambien seleccionar el OAuth 2.0 como metodo.\n\nFinalmente debe de dar click en el boton de Get New Acces Token.",
         "summary": "Autenticación con 0Auth - google",
         "tags": [
           "Misc"
@@ -578,6 +579,7 @@
     },
     "/usuarios/olvide-password/7bglvo1dkjo1h502m458": {
       "post": {
+        "description": "Es importante tomar en cuenta que una vez enviado el correo se tendra un token, el cual debe ser proporcionado aqui para poder iniciar el cambio de clave.",
         "summary": "Almacena el nuevo password",
         "tags": [
           "Misc"
@@ -676,8 +678,9 @@
         }
       }
     },
-    "/images/upload/zQMN9fLJehM": {
+    "/files": {
       "post": {
+        "description": "Se debe seleccionar una imagen primero para luego subirla.",
         "summary": "Subir imagen a S3",
         "tags": [
           "Misc"
@@ -687,7 +690,19 @@
         "produces": [
           "application/json; charset=utf-8"
         ],
-        "parameters": [],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "format": "file",
+            "description": ""
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -696,33 +711,72 @@
             },
             "examples": {
               "application/json; charset=utf-8": {
-                "message": "Imagen subida exitosamente"
+                "result": {
+                  "$metadata": {
+                    "httpStatusCode": 200,
+                    "requestId": "F0H2HQG4A9X7G567",
+                    "extendedRequestId": "3rc8Ci9RVFNYJpieUvPbxnlEwC0rsZzo8EBc3Shi+Bf2EQUFBzZVbyzrB9b1e1e7bQz034mQvpM=",
+                    "attempts": 1,
+                    "totalRetryDelay": 0
+                  },
+                  "Expiration": "expiry-date=\"Mon, 18 Mar 2024 00:00:00 GMT\", rule-id=\"Vencimiento De Archivos\"",
+                  "ETag": "\"fe10ce098e6c1b539c26a63a8ec1fbfe\"",
+                  "ServerSideEncryption": "AES256"
+                }
               }
             },
             "headers": {
-              "X-Powered-By": {
-                "type": "string",
-                "default": "Express"
-              },
-              "Content-Length": {
-                "type": "string",
-                "default": "40"
-              },
-              "ETag": {
-                "type": "string",
-                "default": "W/\"28-Bpji+YyRBum7T9gs6EdTMB1PiOM\""
-              },
               "Date": {
                 "type": "string",
-                "default": "Sat, 16 Mar 2024 15:25:35 GMT"
+                "default": "Sat, 16 Mar 2024 23:12:31 GMT"
+              },
+              "Transfer-Encoding": {
+                "type": "string",
+                "default": "chunked"
               },
               "Connection": {
                 "type": "string",
                 "default": "keep-alive"
               },
-              "Keep-Alive": {
+              "CF-Ray": {
                 "type": "string",
-                "default": "timeout=5"
+                "default": "86586dae997f0325-MIA"
+              },
+              "CF-Cache-Status": {
+                "type": "string",
+                "default": "DYNAMIC"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"182-fAQYIh5zYJnuz206XTIBsvgf44o\""
+              },
+              "Vary": {
+                "type": "string",
+                "default": "Accept-Encoding"
+              },
+              "rndr-id": {
+                "type": "string",
+                "default": "e138ba19-c38e-4be3"
+              },
+              "x-powered-by": {
+                "type": "string",
+                "default": "Express"
+              },
+              "x-render-origin-server": {
+                "type": "string",
+                "default": "Render"
+              },
+              "Server": {
+                "type": "string",
+                "default": "cloudflare"
+              },
+              "Content-Encoding": {
+                "type": "string",
+                "default": "br"
+              },
+              "alt-svc": {
+                "type": "string",
+                "default": "h3=\":443\"; ma=86400"
               }
             }
           }
@@ -732,10 +786,9 @@
             "bearer": []
           }
         ]
-      }
-    },
-    "/files": {
+      },
       "get": {
+        "description": "Este endpoint permite obtener todas las imagenes del bucket.",
         "summary": "Obtener imagenes",
         "tags": [
           "Misc"
@@ -958,6 +1011,7 @@
     },
     "/files/downloadfile/react-logo.jpg": {
       "get": {
+        "description": "La descarga se debe de hacer por medio de un nombre o key conocido que se encuentre en el bucket.",
         "summary": "Descargar un archivo",
         "tags": [
           "Misc"
@@ -1051,6 +1105,64 @@
         ]
       }
     },
+    "/files/prueba4.png/prueba5.png": {
+      "put": {
+        "summary": "Cambiar nombre de imagen",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Cambiarnombredeimagen",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/200-Cambiologrado"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "Archivo renombrado de prueba4.png a prueba5.png"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "61"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"3d-TuIxIYQuuD+hEgZbrS4tpJqzM88\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Sat, 16 Mar 2024 15:27:15 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              },
+              "Keep-Alive": {
+                "type": "string",
+                "default": "timeout=5"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/files/gray-dragon-statue-in-tilt-shift-lens-gXyptwjk9aw.jpg": {
       "get": {
         "summary": "Obtener url a partir de nombre",
@@ -1111,6 +1223,7 @@
     },
     "/images/search": {
       "get": {
+        "description": "Permite buscar imagenes por palabra clave como query para traer coincidencia desde la api externa.",
         "summary": "Buscar imagen en unsplash",
         "tags": [
           "Misc"
@@ -1174,13 +1287,14 @@
         ]
       }
     },
-    "/files/prueba4.png/prueba5.png": {
-      "put": {
-        "summary": "Cambiar nombre de imagen",
+    "/images/upload/zQMN9fLJehM": {
+      "post": {
+        "description": "Para subir una imagen al s3 sin bajarla al local para luego subir, es necesario conocer el id de la imagen de unsplash, para eso primero se debe de consultar el get y copiar el id.",
+        "summary": "Subir imagen desde unsplash a Bucket s3",
         "tags": [
           "Misc"
         ],
-        "operationId": "Cambiarnombredeimagen",
+        "operationId": "SubirimagendesdeunsplashaBuckets3",
         "deprecated": false,
         "produces": [
           "application/json; charset=utf-8"
@@ -1190,11 +1304,11 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/200-Cambiologrado"
+              "$ref": "#/definitions/200-Imagensubidacorrectamente1"
             },
             "examples": {
               "application/json; charset=utf-8": {
-                "message": "Archivo renombrado de prueba4.png a prueba5.png"
+                "message": "Imagen subida exitosamente"
               }
             },
             "headers": {
@@ -1204,15 +1318,15 @@
               },
               "Content-Length": {
                 "type": "string",
-                "default": "61"
+                "default": "40"
               },
               "ETag": {
                 "type": "string",
-                "default": "W/\"3d-TuIxIYQuuD+hEgZbrS4tpJqzM88\""
+                "default": "W/\"28-Bpji+YyRBum7T9gs6EdTMB1PiOM\""
               },
               "Date": {
                 "type": "string",
-                "default": "Sat, 16 Mar 2024 15:27:15 GMT"
+                "default": "Sat, 16 Mar 2024 15:25:35 GMT"
               },
               "Connection": {
                 "type": "string",
@@ -1522,7 +1636,107 @@
     "200-Imagensubidacorrectamente": {
       "title": "200-Imagensubidacorrectamente",
       "example": {
-        "message": "Imagen subida exitosamente"
+        "result": {
+          "$metadata": {
+            "httpStatusCode": 200,
+            "requestId": "F0H2HQG4A9X7G567",
+            "extendedRequestId": "3rc8Ci9RVFNYJpieUvPbxnlEwC0rsZzo8EBc3Shi+Bf2EQUFBzZVbyzrB9b1e1e7bQz034mQvpM=",
+            "attempts": 1,
+            "totalRetryDelay": 0
+          },
+          "Expiration": "expiry-date=\"Mon, 18 Mar 2024 00:00:00 GMT\", rule-id=\"Vencimiento De Archivos\"",
+          "ETag": "\"fe10ce098e6c1b539c26a63a8ec1fbfe\"",
+          "ServerSideEncryption": "AES256"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/Result"
+        }
+      },
+      "required": [
+        "result"
+      ]
+    },
+    "Result": {
+      "title": "Result",
+      "example": {
+        "$metadata": {
+          "httpStatusCode": 200,
+          "requestId": "F0H2HQG4A9X7G567",
+          "extendedRequestId": "3rc8Ci9RVFNYJpieUvPbxnlEwC0rsZzo8EBc3Shi+Bf2EQUFBzZVbyzrB9b1e1e7bQz034mQvpM=",
+          "attempts": 1,
+          "totalRetryDelay": 0
+        },
+        "Expiration": "expiry-date=\"Mon, 18 Mar 2024 00:00:00 GMT\", rule-id=\"Vencimiento De Archivos\"",
+        "ETag": "\"fe10ce098e6c1b539c26a63a8ec1fbfe\"",
+        "ServerSideEncryption": "AES256"
+      },
+      "type": "object",
+      "properties": {
+        "$metadata": {
+          "$ref": "#/definitions/Metadata"
+        },
+        "Expiration": {
+          "type": "string"
+        },
+        "ETag": {
+          "type": "string"
+        },
+        "ServerSideEncryption": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "$metadata",
+        "Expiration",
+        "ETag",
+        "ServerSideEncryption"
+      ]
+    },
+    "Metadata": {
+      "title": "Metadata",
+      "example": {
+        "httpStatusCode": 200,
+        "requestId": "F0H2HQG4A9X7G567",
+        "extendedRequestId": "3rc8Ci9RVFNYJpieUvPbxnlEwC0rsZzo8EBc3Shi+Bf2EQUFBzZVbyzrB9b1e1e7bQz034mQvpM=",
+        "attempts": 1,
+        "totalRetryDelay": 0
+      },
+      "type": "object",
+      "properties": {
+        "httpStatusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "extendedRequestId": {
+          "type": "string"
+        },
+        "attempts": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "totalRetryDelay": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "httpStatusCode",
+        "requestId",
+        "extendedRequestId",
+        "attempts",
+        "totalRetryDelay"
+      ]
+    },
+    "200-Descarga": {
+      "title": "200-Descarga",
+      "example": {
+        "message": "archivo descargado"
       },
       "type": "object",
       "properties": {
@@ -1532,6 +1746,21 @@
       },
       "required": [
         "message"
+      ]
+    },
+    "404-noencontroarchivo1": {
+      "title": "404-noencontroarchivo1",
+      "example": {
+        "error": "El archivo react-logo.jpgd no existe en el bucket de S3."
+      },
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "error"
       ]
     },
     "200-Obtenerlistadeimagenesdebucket": {
@@ -1642,10 +1871,10 @@
         "Owner"
       ]
     },
-    "200-Descarga": {
-      "title": "200-Descarga",
+    "200-Cambiologrado": {
+      "title": "200-Cambiologrado",
       "example": {
-        "message": "archivo descargado"
+        "message": "Archivo renombrado de prueba4.png a prueba5.png"
       },
       "type": "object",
       "properties": {
@@ -1655,21 +1884,6 @@
       },
       "required": [
         "message"
-      ]
-    },
-    "404-noencontroarchivo1": {
-      "title": "404-noencontroarchivo1",
-      "example": {
-        "error": "El archivo react-logo.jpgd no existe en el bucket de S3."
-      },
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "error"
       ]
     },
     "200-Consultacorrecta": {
@@ -2983,10 +3197,10 @@
         "approved_on"
       ]
     },
-    "200-Cambiologrado": {
-      "title": "200-Cambiologrado",
+    "200-Imagensubidacorrectamente1": {
+      "title": "200-Imagensubidacorrectamente1",
       "example": {
-        "message": "Archivo renombrado de prueba4.png a prueba5.png"
+        "message": "Imagen subida exitosamente"
       },
       "type": "object",
       "properties": {
