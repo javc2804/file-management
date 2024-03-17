@@ -53,6 +53,8 @@ El proyecto cuenta con un Swagger para documentar la API. Puedes acceder al docu
 
 Proporciono también documentación en postman, herramienta la cual tengo dominio y por la cual fue usado para el desarrolo de la api.
 
+- [ Documentación ](https://grey-rocket-762185.postman.co/workspace/6213b736-3098-49c8-860a-c9e0d8f84361/request/5247255-4ee0f2d3-03b0-4b95-bf93-bccda42daea3)
+
 ## Docker
 
 Si prefieres ejecutar el proyecto en un contenedor Docker, sigue estos pasos:
